@@ -30,7 +30,8 @@ let HenceComp = function (comp, debug) {
         if (debug) {
           console.log('HenceComp.registerElement on:', this);
         }
-        result = this._polymer = Polymer(this);
+        result = Polymer(this);
+        this._polymer = result;
       }
       return result;
     },
