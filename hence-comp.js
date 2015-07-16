@@ -8,14 +8,13 @@
 
 import console from 'console';
 import _extend from 'lodash/object/extend';
-import _isEqual from 'lodash/lang/isEqual';
 
 /**
  * @constructor
  * @param {Object|*} comp The component being defined
  * @returns {Object} The resulting component and Polymer initialization/binding controls.
  */
-let HenceComp = function (comp, debug) {
+let HenceComp = function (comp) {
   var _polymer = null;
 
   return _extend(comp || {}, {
@@ -31,9 +30,6 @@ let HenceComp = function (comp, debug) {
       if (!result) {
         _polymer = result = Polymer.Class(this);
         document.registerElement(this.is, _polymer);
-        if (debug) {
-          console.log('HenceComp.registerElement on:', this, result, _polymer, _isEqual(result,_polymer));
-        }
       }
 
       return result;
