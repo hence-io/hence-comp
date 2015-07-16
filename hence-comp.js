@@ -26,13 +26,16 @@ let HenceComp = function (comp, debug) {
      */
       registerElement() {
       let result = _polymer;
+
       if (!result) {
-        if (debug) {
-          console.log('HenceComp.registerElement on:', this);
-        }
         result = Polymer(this);
         _polymer = result;
       }
+
+      if (debug) {
+        console.log('HenceComp.registerElement on:', this, result, _polymer);
+      }
+
       return result;
     },
 
