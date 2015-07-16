@@ -15,9 +15,9 @@ import _extend from 'lodash/object/extend';
  * @returns {Object} The resulting component and Polymer initialization/binding controls.
  */
 let HenceComp = function (comp, debug) {
-  return _extend(comp || {}, {
-    _polymer: null,
+  var _polymer = null;
 
+  return _extend(comp || {}, {
     /**
      * Register's this element with Polymer, or return the created Polymer object; ensure that it is only ever
      * registered once.
@@ -25,13 +25,13 @@ let HenceComp = function (comp, debug) {
      * @returns {Polymer} The resulting bound Polymer instance, registered and ready to be leveraged.
      */
       registerElement() {
-      let result = this._polymer;
+      let result = _polymer;
       if (!result) {
         if (debug) {
           console.log('HenceComp.registerElement on:', this);
         }
         result = Polymer(this);
-        this._polymer = result;
+        _polymer = result;
       }
       return result;
     },
