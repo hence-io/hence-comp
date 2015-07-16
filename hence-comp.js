@@ -8,7 +8,7 @@
 
 import console from 'console';
 import _extend from 'lodash/object/extend';
-import _isEqual from 'lodash/object/isEqual';
+import _isEqual from 'lodash/lang/isEqual';
 
 /**
  * @constructor
