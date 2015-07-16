@@ -29,7 +29,8 @@ let HenceComp = function (comp, debug) {
       let result = _polymer;
 
       if (!result) {
-        _polymer = result = Polymer(this);
+        _polymer = result = Polymer.Class(this);
+        document.registerElement(this.is, _polymer);
         if (debug) {
           console.log('HenceComp.registerElement on:', this, result, _polymer, _isEqual(result,_polymer));
         }
