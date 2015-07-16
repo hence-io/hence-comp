@@ -14,7 +14,7 @@ import _extend from 'lodash/object/extend';
  * @param {Object|*} comp The component being defined
  * @returns {Object} The resulting component and Polymer initialization/binding controls.
  */
-let HenceComp = function (comp) {
+let HenceComp = function (comp, debug) {
   return _extend(comp || {}, {
     _polymer: null,
 
@@ -24,10 +24,12 @@ let HenceComp = function (comp) {
      *
      * @returns {Polymer} The resulting bound Polymer instance, registered and ready to be leveraged.
      */
-    registerElement() {
+      registerElement() {
       let result = this._polymer;
       if (!result) {
-        //console.log('registerElement', this);
+        if (debug) {
+          console.log('HenceComp.registerElement on:', this);
+        }
         result = this._polymer = Polymer(this);
       }
       return result;
@@ -40,7 +42,7 @@ let HenceComp = function (comp) {
      * @param {Object} opts Options for which to configure this new dynamically generated component
      * @returns {Polymer} The resulting created DOM element,
      */
-    createElement(opts = {}) {
+      createElement(opts = {}) {
       let el = new this.registerElement()(opts); // Generates a new polymer component of this type
       return el;
     },
@@ -52,7 +54,7 @@ let HenceComp = function (comp) {
      * @param {Object} target The desired DOM element to append the new component too.
      * @returns {Polymer} The resulting created DOM element,
      */
-    appendElementTo(opts, target = document.body) {
+      appendElementTo(opts, target = document.body) {
       let el = this.createElement(opts);
       target.appendChild(el);
       return el;
