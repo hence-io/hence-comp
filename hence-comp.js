@@ -3,7 +3,7 @@
  * @module hence-comp
  */
 /**
- * @external Polymer
+ * @external Polymer http://polymer.github.io/polymer/
  */
 
 import console from 'console';
