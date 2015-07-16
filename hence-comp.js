@@ -8,6 +8,7 @@
 
 import console from 'console';
 import _extend from 'lodash/object/extend';
+import _isEqual from 'lodash/object/isEqual';
 
 /**
  * @constructor
@@ -33,7 +34,7 @@ let HenceComp = function (comp, debug) {
       }
 
       if (debug) {
-        console.log('HenceComp.registerElement on:', this, result, _polymer);
+        console.log('HenceComp.registerElement on:', this, result, _polymer, _isEqual(result,_polymer));
       }
 
       return result;
