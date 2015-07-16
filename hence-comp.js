@@ -47,6 +47,7 @@ let HenceComp = function (comp, debug) {
      * @returns {Polymer} The resulting created DOM element,
      */
       createElement(opts = {}) {
+      this.registerElement(); // ensure that the element is in fact registered
       let el = new _polymer(opts); // Generates a new polymer component of this type
       return el;
     },
