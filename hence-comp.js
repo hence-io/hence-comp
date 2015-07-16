@@ -29,12 +29,10 @@ let HenceComp = function (comp, debug) {
       let result = _polymer;
 
       if (!result) {
-        result = Polymer(this);
-        _polymer = result;
-      }
-
-      if (debug) {
-        console.log('HenceComp.registerElement on:', this, result, _polymer, _isEqual(result,_polymer));
+        _polymer = result = Polymer(this);
+        if (debug) {
+          console.log('HenceComp.registerElement on:', this, result, _polymer, _isEqual(result,_polymer));
+        }
       }
 
       return result;
