@@ -7,7 +7,6 @@
  */
 
 import console from 'consoler';
-import _once from 'lodash/function/once';
 import _extend from 'lodash/object/extend';
 
 /**
@@ -17,7 +16,7 @@ import _extend from 'lodash/object/extend';
  */
 let HenceComp = function (comp) {
   var _polymerClass = null;
-  var _polymerRegistered = false;
+  var _polymerRegistered = null;
 
   return _extend(comp || {}, {
     /**
@@ -26,9 +25,12 @@ let HenceComp = function (comp) {
      *
      * @returns {Polymer} The resulting Polymer instance, able to be leveraged once registered.
      */
-    polymerClass: _once(()=> {
-      return _polymerClass = Polymer.Class(this);
-    }),
+    polymerClass() {
+      if (!_polymerClass) {
+        _polymerClass = Polymer.Class(this);
+      }
+      return _polymerClass;
+    },
 
     /**
      * Register's this element with Polymer, or return the created Polymer object; ensure that it is only ever
@@ -36,10 +38,14 @@ let HenceComp = function (comp) {
      *
      * @returns {Boolean} Whether or not the element is registered.
      */
-    registerElement: _once(()=> {
-      document.registerElement(this.is, this.polymerClass());
-      return _polymerRegistered = true;
-    }),
+    registerElement() {
+      if (!_polymerRegistered) {
+        document.registerElement(this.is, this.polymerClass());
+        _polymerRegistered = true;
+      }
+
+      return _polymerRegistered;
+    },
 
     /**
      * Create a new element, leveraging the constructor method, allowing us to pass in parameters and execute the
