@@ -8,6 +8,7 @@
 
 import console from 'consoler';
 import _extend from 'lodash/object/extend';
+import _defaults from 'lodash/object/defaults';
 
 /**
  * @constructor
@@ -17,6 +18,21 @@ import _extend from 'lodash/object/extend';
 let HenceComp = function (comp) {
   var _polymerClass = null;
   var _polymerRegistered = null;
+
+  _defaults(comp,{
+      /**
+       * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
+       * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
+       * warned.
+       *
+       * @param {Object} opts A set of options for configuring this component
+       */
+    factoryImpl(opts = {}) {
+      this.properties.forEach(function(prop, name){
+        this[name] = opts[name] || this[name];
+      });
+    }
+  });
 
   return _extend(comp || {}, {
     /**
