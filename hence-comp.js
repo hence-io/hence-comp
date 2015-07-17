@@ -6,7 +6,7 @@
  * @external Polymer http://polymer.github.io/polymer/
  */
 
-import console from 'console';
+import console from 'consoler';
 import _extend from 'lodash/object/extend';
 
 /**
