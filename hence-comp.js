@@ -9,6 +9,7 @@
 import console from 'consoler';
 import _extend from 'lodash/object/extend';
 import _defaults from 'lodash/object/defaults';
+import _keys from 'lodash/object/keys';
 
 /**
  * @constructor
@@ -18,18 +19,22 @@ import _defaults from 'lodash/object/defaults';
 let HenceComp = function (comp) {
   var _polymerClass = null;
   var _polymerRegistered = null;
+  var _props = _keys(comp.properties);
 
   _defaults(comp,{
-      /**
-       * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
-       * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
-       * warned.
-       *
-       * @param {Object} opts A set of options for configuring this component
-       */
-    factoryImpl(opts = {}) {
-      comp.properties.forEach(function(prop, name){
-        this[name] = opts[name] || this[name];
+    /**
+     * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
+     * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
+     * warned.
+     *
+     * @param {Object} opts A set of options for configuring this component
+     */
+      factoryImpl(opts = {}) {
+      let self = this;
+      _props.forEach(function(name){
+        if(opts[name]) {
+          self.set(name, opts[name]);
+        }
       });
     }
   });
@@ -41,7 +46,7 @@ let HenceComp = function (comp) {
      *
      * @returns {Polymer} The resulting Polymer instance, able to be leveraged once registered.
      */
-    polymerClass() {
+      polymerClass() {
       if (!_polymerClass) {
         _polymerClass = Polymer.Class(this);
       }
@@ -54,7 +59,7 @@ let HenceComp = function (comp) {
      *
      * @returns {Boolean} Whether or not the element is registered.
      */
-    registerElement() {
+      registerElement() {
       if (!_polymerRegistered) {
         document.registerElement(this.is, this.polymerClass());
         _polymerRegistered = true;
@@ -70,7 +75,7 @@ let HenceComp = function (comp) {
      * @param {Object} opts Options for which to configure this new dynamically generated component
      * @returns {Polymer} The resulting created DOM element,
      */
-    createElement(opts = {}) {
+      createElement(opts = {}) {
       this.registerElement(); // ensure that the element is in fact registered
       let el = new _polymerClass(opts); // Generates a new polymer component of this type
       return el;
@@ -83,7 +88,7 @@ let HenceComp = function (comp) {
      * @param {Object} target The desired DOM element to append the new component too.
      * @returns {Polymer} The resulting created DOM element,
      */
-    appendElementTo(opts, target = document.body) {
+      appendElementTo(opts, target = document.body) {
       let el = this.createElement(opts);
       target.appendChild(el);
       return el;
