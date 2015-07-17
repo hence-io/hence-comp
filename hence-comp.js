@@ -28,7 +28,7 @@ let HenceComp = function (comp) {
        * @param {Object} opts A set of options for configuring this component
        */
     factoryImpl(opts = {}) {
-      this.properties.forEach(function(prop, name){
+      comp.properties.forEach(function(prop, name){
         this[name] = opts[name] || this[name];
       });
     }
