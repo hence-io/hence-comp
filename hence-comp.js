@@ -7,7 +7,7 @@
  */
 
 import console from 'consoler';
-import _once from 'lodash/function/once
+import _once from 'lodash/function/once';
 import _extend from 'lodash/object/extend';
 
 /**
