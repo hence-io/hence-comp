@@ -12,9 +12,8 @@ import _defaults from 'lodash/object/defaults';
 import _keys from 'lodash/object/keys';
 
 // A fall back dependency for unit testing
-import Polymer from 'polymer-js';
-
-import wcl from 'webcomponents-lite';
+//import Polymer from 'polymer-js';
+//import wcl from 'webcomponents-lite';
 
 /**
  * @constructor
