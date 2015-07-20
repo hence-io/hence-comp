@@ -18,6 +18,7 @@
   "dependencies": {
     "consoler": "git://github.com/blitzcodes/consoler",
     "lodash": "^3.10.0",
-    "polymer-js": "^1.0.5"
+    "polymer-js": "^1.0.5",
+    "webcomponents-lite": "^0.6.0"
   }
 }
