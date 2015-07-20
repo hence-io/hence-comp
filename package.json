@@ -10,11 +10,14 @@
   },
   "browserify": {
     "transform": [
-      ["babelify"]
+      [
+        "babelify"
+      ]
     ]
   },
   "dependencies": {
     "consoler": "git://github.com/blitzcodes/consoler",
-    "lodash": "^3.10.0"
+    "lodash": "^3.10.0",
+    "polymer-js": "^1.0.5"
   }
 }
