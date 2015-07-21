@@ -103,7 +103,9 @@ let HenceComp = function (comp) {
        */
       appendElementTo(opts, target = document.body) {
         let el = this.createElement(opts);
-        target.appendChild(el);
+        if (target) {
+          target.appendChild(el);
+        }
         return el;
       }
     });
