@@ -11,11 +11,13 @@ import _extend from 'lodash/object/extend';
 import _defaults from 'lodash/object/defaults';
 import _keys from 'lodash/object/keys';
 
-// A fall back dependency for unit testing
+// A fallback dependency for unit testing
 //import Polymer from 'polymer-js';
 //import wcl from 'webcomponents-lite';
 
+// Fail safe fallbacks
 let Polymer = window.Polymer || {Class:()=>{}};
+let document = document || {registerElement:()=>{},body:{}};
 
 /**
  * @constructor
