@@ -21,26 +21,56 @@ let HenceComp = function (comp) {
   var _polymerRegistered = null;
   var _props = _keys(comp.properties);
 
+  /**
+   * To simplify allowing to pass a single object through the DOM that overrides any/all of this components
+   * properties, we'll allow a default 'props' property on the element to be access this way.
+   */
+  _extend(comp.properties, {
+    props: {
+      type: Object
+    }
+  });
+
+  /**
+   * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
+   * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
+   * warned.
+   *
+   * @param {Object} opts A set of options for configuring this component
+   */
   _defaults(comp, {
-    /**
-     * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
-     * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
-     * warned.
-     *
-     * @param {Object} opts A set of options for configuring this component
-     */
-      factoryImpl(opts = {}) {
+  factoryImpl(opts = {}) {
       let self = this;
 
-      _props.forEach(function (name) {
-        if (opts[name]) {
-          self.set(name, opts[name]);
+      _props.forEach(function (propertyName) {
+        if (opts[propertyName]) {
+          self.set(propertyName, opts[propertyName]);
         }
       });
     }
   });
 
+  /**
+   * Now lets bind the essential Polymer helpers
+   */
   _extend(comp, {
+    /**
+     * If this element was created on the DOM, and was passed in a props property, use that object to populate this
+     * components properties now, in one fell swoop.
+     */
+    configureProperties() {
+      let self = this;
+      let propOverrides = self.props;
+
+      if (propOverrides) {
+        _props.forEach(function (propertyName) {
+          if (propOverrides[propertyName]) {
+            self.set(propertyName, propOverrides[propertyName]);
+          }
+        });
+      }
+    },
+
     /**
      * Initialize the Polymer Class, and ensure it is only performed once, to be used in registering the element, as
      * well as for creating new instances of it.
