@@ -16,7 +16,7 @@ import _keys from 'lodash/object/keys';
 //import wcl from 'webcomponents-lite';
 
 // Fail safe fallbacks
-let Polymer = window.Polymer || {Class:()=>{}};
+let Polymer = window.Polymer || {Class:()=>{return null;}};
 let document = document || {registerElement:()=>{},body:{}};
 
 /**
@@ -37,7 +37,7 @@ let HenceComp = function (comp) {
      *
      * @param {Object} opts A set of options for configuring this component
      */
-      factoryImpl(opts = {}) {
+    factoryImpl(opts = {}) {
       let self = this;
       _props.forEach(function(name){
         if(opts[name]) {
@@ -55,7 +55,7 @@ let HenceComp = function (comp) {
        *
        * @returns {Polymer} The resulting Polymer instance, able to be leveraged once registered.
        */
-        polymerClass() {
+      polymerClass() {
         if (!_polymerClass) {
           _polymerClass = Polymer.Class(this);
         }
@@ -68,8 +68,8 @@ let HenceComp = function (comp) {
        *
        * @returns {Boolean} Whether or not the element is registered.
        */
-        registerElement() {
-        if (!_polymerRegistered) {
+      registerElement() {
+        if (!_polymerRegistered && document && this.polymerClass()) {
           document.registerElement(this.is, this.polymerClass());
           _polymerRegistered = true;
         }
@@ -84,9 +84,13 @@ let HenceComp = function (comp) {
        * @param {Object} opts Options for which to configure this new dynamically generated component
        * @returns {Polymer} The resulting created DOM element,
        */
-        createElement(opts = {}) {
-        this.registerElement(); // ensure that the element is in fact registered
-        let el = new _polymerClass(opts); // Generates a new polymer component of this type
+      createElement(opts = {}) {
+        var el;
+
+        if(this.registerElement()) { // ensure that the element is in fact registered
+          el = new _polymerClass(opts); // Generates a new polymer component of this type
+        }
+
         return el;
       },
 
@@ -97,7 +101,7 @@ let HenceComp = function (comp) {
        * @param {Object} target The desired DOM element to append the new component too.
        * @returns {Polymer} The resulting created DOM element,
        */
-        appendElementTo(opts, target = document.body) {
+      appendElementTo(opts, target = document.body) {
         let el = this.createElement(opts);
         target.appendChild(el);
         return el;
