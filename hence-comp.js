@@ -15,6 +15,10 @@ import _keys from 'lodash/object/keys';
 //import Polymer from 'polymer-js';
 //import wcl from 'webcomponents-lite';
 
+// Fail safe fallbacks
+let Polymer = window.Polymer || {Class:()=>{}};
+let document = document || {registerElement:()=>{},body:{}};
+
 /**
  * @constructor
  * @param {Object|*} comp The component being defined
