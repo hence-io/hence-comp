@@ -11,14 +11,6 @@ import _extend from 'lodash/object/extend';
 import _defaults from 'lodash/object/defaults';
 import _keys from 'lodash/object/keys';
 
-// A fallback dependency for unit testing
-//import Polymer from 'polymer-js';
-//import wcl from 'webcomponents-lite';
-
-// Fail safe fallbacks
-let Polymer = window.Polymer || {Class:()=>{return null;}};
-let document = document || {registerElement:()=>{},body:{}};
-
 /**
  * @constructor
  * @param {Object|*} comp The component being defined
@@ -29,7 +21,7 @@ let HenceComp = function (comp) {
   var _polymerRegistered = null;
   var _props = _keys(comp.properties);
 
-  _defaults(comp,{
+  _defaults(comp, {
     /**
      * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
      * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
@@ -37,79 +29,81 @@ let HenceComp = function (comp) {
      *
      * @param {Object} opts A set of options for configuring this component
      */
-    factoryImpl(opts = {}) {
+      factoryImpl(opts = {}) {
       let self = this;
-      _props.forEach(function(name){
-        if(opts[name]) {
+
+      _props.forEach(function (name) {
+        if (opts[name]) {
           self.set(name, opts[name]);
         }
       });
     }
   });
 
-  if(Polymer) {
-    _extend(comp, {
-      /**
-       * Initialize the Polymer Class, and ensure it is only performed once, to be used in registering the element, as
-       * well as for creating new instances of it.
-       *
-       * @returns {Polymer} The resulting Polymer instance, able to be leveraged once registered.
-       */
-      polymerClass() {
-        if (!_polymerClass) {
-          _polymerClass = Polymer.Class(this);
-        }
-        return _polymerClass;
-      },
-
-      /**
-       * Register's this element with Polymer, or return the created Polymer object; ensure that it is only ever
-       * registered once.
-       *
-       * @returns {Boolean} Whether or not the element is registered.
-       */
-      registerElement() {
-        if (!_polymerRegistered && document && this.polymerClass()) {
-          document.registerElement(this.is, this.polymerClass());
-          _polymerRegistered = true;
-        }
-
-        return _polymerRegistered;
-      },
-
-      /**
-       * Create a new element, leveraging the constructor method, allowing us to pass in parameters and execute the
-       * factoryImpl(...) function via Polymer. Running new using the registerElement ensures it is found to Polymer once.
-       *
-       * @param {Object} opts Options for which to configure this new dynamically generated component
-       * @returns {Polymer} The resulting created DOM element,
-       */
-      createElement(opts = {}) {
-        var el;
-
-        if(this.registerElement()) { // ensure that the element is in fact registered
-          el = new _polymerClass(opts); // Generates a new polymer component of this type
-        }
-
-        return el;
-      },
-
-      /**
-       * Appends a new component to a given target element
-       *
-       * @param {Object} opts Options for which to configure this new dynamically generated component
-       * @param {Object} target The desired DOM element to append the new component too.
-       * @returns {Polymer} The resulting created DOM element,
-       */
-      appendElementTo(opts, target = document.body) {
-        let el = this.createElement(opts);
-        if (target) {
-          target.appendChild(el);
-        }
-        return el;
+  _extend(comp, {
+    /**
+     * Initialize the Polymer Class, and ensure it is only performed once, to be used in registering the element, as
+     * well as for creating new instances of it.
+     *
+     * @returns {Polymer} The resulting Polymer instance, able to be leveraged once registered.
+     */
+    polymerClass() {
+      if (!_polymerClass && Polymer) {
+        _polymerClass = Polymer.Class(this);
       }
-    });
-  }
+
+      return _polymerClass;
+    },
+
+    /**
+     * Register's this element with Polymer, or return the created Polymer object; ensure that it is only ever
+     * registered once.
+     *
+     * @returns {Boolean} Whether or not the element is registered.
+     */
+    registerElement() {
+      if (!_polymerRegistered && document && this.polymerClass()) {
+        document.registerElement(this.is, this.polymerClass());
+        _polymerRegistered = true;
+      }
+
+      return _polymerRegistered;
+    },
+
+    /**
+     * Create a new element, leveraging the constructor method, allowing us to pass in parameters and execute the
+     * factoryImpl(...) function via Polymer. Running new using the registerElement ensures it is found to Polymer once.
+     *
+     * @param {Object} opts Options for which to configure this new dynamically generated component
+     * @returns {Polymer} The resulting created DOM element,
+     */
+    createElement(opts = {}) {
+      let el;
+
+      if (this.registerElement()) { // ensure that the element is in fact registered
+        el = new _polymerClass(opts); // Generates a new polymer component of this type
+      }
+
+      return el;
+    },
+
+    /**
+     * Appends a new component to a given target element
+     *
+     * @param {Object} opts Options for which to configure this new dynamically generated component
+     * @param {Object} target The desired DOM element to append the new component too.
+     * @returns {Polymer} The resulting created DOM element,
+     */
+    appendElementTo(opts, target = document.body) {
+      let el = this.createElement(opts);
+
+      if (target) {
+        target.appendChild(el);
+      }
+
+      return el;
+    }
+  });
 
   return comp;
 };
