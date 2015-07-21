@@ -58,7 +58,7 @@ let HenceComp = function (comp) {
       if (!_polymerClass) {
         _polymerClass = Polymer.Class(this);
       }
-      return _polymerClass;
+      return _polymerClass || this.factoryImpl;
     },
 
     /**
