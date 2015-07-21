@@ -7,19 +7,21 @@
  */
 
 import console from 'consoler';
+import _clone from 'lodash/lang/cloneDeep';
 import _extend from 'lodash/object/extend';
 import _defaults from 'lodash/object/defaults';
 import _keys from 'lodash/object/keys';
 
 /**
  * @constructor
- * @param {Object|*} comp The component being defined
+ * @param {Object|*} original The component being defined
  * @returns {Object} The resulting component and Polymer initialization/binding controls.
  */
-let HenceComp = function (comp) {
-  var _polymerClass = null;
-  var _polymerRegistered = null;
-  var _props = _keys(comp.properties);
+let HenceComp = function (original) {
+  let comp = _clone(original);
+  let _polymerClass = null;
+  let _polymerRegistered = null;
+  let _props = _keys(comp.properties);
 
   /**
    * To simplify allowing to pass a single object through the DOM that overrides any/all of this components
