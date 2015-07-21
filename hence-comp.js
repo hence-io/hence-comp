@@ -15,7 +15,7 @@ import _keys from 'lodash/object/keys';
 //import Polymer from 'polymer-js';
 //import wcl from 'webcomponents-lite';
 
-let Polymer = window.Polymer || {class:()=>{}};
+let Polymer = window.Polymer || {Class:()=>{}};
 
 /**
  * @constructor
