@@ -1,2 +1,2 @@
 
-export * from './hence-comp'
+export * from './HenceComp'
