@@ -64,15 +64,19 @@ let HenceComp = function (original) {
     }
   });
 
-  /**
-   * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
-   * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
-   * warned.
-   *
-   * @param {Object} opts A set of options for configuring this component
-   */
   _defaults(comp, {
-    factoryImpl(opts = {}) {
+    /********************************************************************************************************************
+     * Initialization
+     ********************************************************************************************************************/
+
+    /**
+     * The factoryImpl method is only invoked when you create an element using the constructor, this.createElement or
+     * it's binding functions. Instances hardcoded into html already will NOT execute this constructor. You've been
+     * warned.
+     *
+     * @param {Object} opts A set of options for configuring this component
+     */
+      factoryImpl(opts = {}) {
       let self = this;
 
       _props.forEach(function (propertyName) {
@@ -83,10 +87,11 @@ let HenceComp = function (original) {
     }
   });
 
-  /**
-   * Now lets bind the essential Polymer helpers
-   */
   _extend(comp, {
+    /*******************************************************************************************************************
+     * Polymer Helpers
+     ******************************************************************************************************************/
+
     /**
      * Initialize the Polymer Class, and ensure it is only performed once, to be used in registering the element, as
      * well as for creating new instances of it.
@@ -150,6 +155,16 @@ let HenceComp = function (original) {
       return el;
     }
   });
+
+  /*******************************************************************************************************************
+   * Element Behaviour
+   ******************************************************************************************************************/
+
+  // Ensure to add the default behavior
+  if (!comp.behaviors) {
+    comp.behaviors = [];
+  }
+  comp.behaviors.push(HenceBehaviour);
 
   return comp;
 };
