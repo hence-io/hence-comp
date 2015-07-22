@@ -1,4 +1,5 @@
 node_modules/
+- adding bower_components to the .gitignore as it was missed
 temp
 *.log
 .idea
