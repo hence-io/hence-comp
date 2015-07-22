@@ -29,7 +29,8 @@ let HenceComp = function (original) {
    */
   _extend(comp.properties, {
     props: {
-      type: Object
+      type: Object,
+      notify: true
     }
   });
 
