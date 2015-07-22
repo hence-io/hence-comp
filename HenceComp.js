@@ -124,5 +124,4 @@ let HenceComp = function (original) {
   return comp;
 };
 
-export * from './HenceBehaviour';
 export default HenceComp;
