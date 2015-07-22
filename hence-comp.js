@@ -12,6 +12,36 @@ import _extend from 'lodash/object/extend';
 import _defaults from 'lodash/object/defaults';
 import _keys from 'lodash/object/keys';
 
+let HenceBehaviour = {
+  properties: {
+    props: {
+      type: Object,
+      notify: true
+    }
+  },
+
+  attached() {
+    this.configureProperties(); // will auto fill in this components properties if passed in as an object through the
+  },
+
+  /**
+   * If this element was created on the DOM, and was passed in a props property, use that object to populate this
+   * components properties now, in one fell swoop.
+   */
+    configureProperties() {
+    let self = this;
+    let propOverrides = self.props;
+
+    if (propOverrides) {
+      self.propList.forEach(function (propertyName) {
+        if (propOverrides[propertyName]) {
+          self.set(propertyName, propOverrides[propertyName]);
+        }
+      });
+    }
+  }
+};
+
 /**
  * @constructor
  * @param {Object|*} original The component being defined
@@ -28,9 +58,9 @@ let HenceComp = function (original) {
    * properties, we'll allow a default 'props' property on the element to be access this way.
    */
   _extend(comp.properties, {
-    props: {
-      type: Object,
-      notify: true
+    propList: {
+      type: Array,
+      value: _props
     }
   });
 
@@ -42,7 +72,7 @@ let HenceComp = function (original) {
    * @param {Object} opts A set of options for configuring this component
    */
   _defaults(comp, {
-  factoryImpl(opts = {}) {
+    factoryImpl(opts = {}) {
       let self = this;
 
       _props.forEach(function (propertyName) {
@@ -58,29 +88,12 @@ let HenceComp = function (original) {
    */
   _extend(comp, {
     /**
-     * If this element was created on the DOM, and was passed in a props property, use that object to populate this
-     * components properties now, in one fell swoop.
-     */
-    configureProperties() {
-      let self = this;
-      let propOverrides = self.props;
-
-      if (propOverrides) {
-        _props.forEach(function (propertyName) {
-          if (propOverrides[propertyName]) {
-            self.set(propertyName, propOverrides[propertyName]);
-          }
-        });
-      }
-    },
-
-    /**
      * Initialize the Polymer Class, and ensure it is only performed once, to be used in registering the element, as
      * well as for creating new instances of it.
      *
      * @returns {Polymer} The resulting Polymer instance, able to be leveraged once registered.
      */
-    polymerClass() {
+      polymerClass() {
       if (!_polymerClass && Polymer) {
         _polymerClass = Polymer.Class(this);
       }
@@ -94,7 +107,7 @@ let HenceComp = function (original) {
      *
      * @returns {Boolean} Whether or not the element is registered.
      */
-    registerElement() {
+      registerElement() {
       if (!_polymerRegistered && document && this.polymerClass()) {
         document.registerElement(this.is, this.polymerClass());
         _polymerRegistered = true;
@@ -110,7 +123,7 @@ let HenceComp = function (original) {
      * @param {Object} opts Options for which to configure this new dynamically generated component
      * @returns {Polymer} The resulting created DOM element,
      */
-    createElement(opts = {}) {
+      createElement(opts = {}) {
       let el;
 
       if (this.registerElement()) { // ensure that the element is in fact registered
@@ -127,7 +140,7 @@ let HenceComp = function (original) {
      * @param {Object} target The desired DOM element to append the new component too.
      * @returns {Polymer} The resulting created DOM element,
      */
-    appendElementTo(opts, target = document.body) {
+      appendElementTo(opts, target = document.body) {
       let el = this.createElement(opts);
 
       if (target) {
@@ -141,4 +154,5 @@ let HenceComp = function (original) {
   return comp;
 };
 
+export {HenceBehaviour};
 export default HenceComp;
