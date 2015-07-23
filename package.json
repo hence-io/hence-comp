@@ -1,12 +1,15 @@
 {
   "name": "hence-comp",
   "version": "0.1.0",
-  "description": "",
-  "author": "",
+  "description": "A core library for the ES6/Polymer web components used in the Hence.io framework",
+  "author": "Sean 'Blitz' Homer <sean.homer@therefore.ca>",
   "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "npm run jsdocs && npm run esdocs",
+    "esdocs": "esdoc -c .esdoc.json",
+    "jsdocs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
   "browserify": {
     "transform": [
@@ -14,6 +17,11 @@
         "babelify"
       ]
     ]
+  },
+  "devDependencies": {
+    "jsdoc": "^3.3.2",
+    "esdoc": "^0.1.2",
+    "minami": "^1.1.0"
   },
   "dependencies": {
     "consoler": "git://github.com/blitzcodes/consoler",
