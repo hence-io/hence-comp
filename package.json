@@ -1,5 +1,5 @@
 {
-  "name": "hence-comp",
+  "name": "hence-polycore",
   "version": "0.1.0",
   "description": "A core library for the ES6/Polymer web components used in the Hence.io framework",
   "author": "Sean 'Blitz' Homer <sean.homer@therefore.ca>",
