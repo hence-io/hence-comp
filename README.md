@@ -6,11 +6,11 @@ A core wrapper for working with Polymer objects, used to be a foundation for oth
 ### Working with HenceComp
 
 Getting the package from npm:
-```npm i --save hence-comp```
+```npm i --save hence-polycore```
 
 #### Registering Components
 ```
-import HenceComp from 'hence-comp';
+import HenceComp from 'hence-polycore';
 let MyElement = HenceComp({ ... your polymer config ... }});
 export default MyElement;
 ```
