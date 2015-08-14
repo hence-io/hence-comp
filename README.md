@@ -38,12 +38,12 @@ elements are configurable and can be rendered by other components. Events dealin
 triggered back to the component which implemented it, while some internal events may exist in isolation to support
 interaction or non-data based behaviour.
 
-### HenceModel - Model
+### Model
 
 Model components are specialized to help bridge the UI & Schema components, taking data from Schemas, translates and
 formats the results to support a dedicated UI component, and serves the results once prepared to UI.
 
-### HenceSchema - Schema
+### Schema
 
 Schema components define and help data adhere to a strict format, field type, and validation methods for data
 integrity and transport. All API interaction occurs through these components, and it helps to facilitate serving data
@@ -95,9 +95,10 @@ Getting the package from git:
 ## Building Components
 
 ```javascript
-import {HenceComp} from 'hence-polycore';
+import {HenceUi, HenceModel, HenceSchema} from 'hence-polycore';
 
-let MyElement = HenceComp({
+// Choose which Component Type to build, Ui, Model, or Schema
+let MyElement = HenceUi({
   is: 'my-element',
   properties : {
     sample: 'string'
