@@ -94,10 +94,10 @@ Getting the package from git:
 ## Building Components
 
 ```javascript
-import {HenceUi, HenceModel, HenceSchema} from 'hence-component-framework';
+import Hence from 'hence-component-framework';
 
 // Choose which Component Type to build, Ui, Model, or Schema
-let MyElement = HenceUi({
+let MyElement = Hence.Ui({
   is: 'my-element',
   properties : {
     sample: 'string'
