@@ -1,13 +1,13 @@
-import {HenceModel} from './lib/HenceModel';
-import {HenceSchema} from './lib/HenceSchema';
-import {HenceUi} from './lib/HenceUi';
-import {HenceHook} from './lib/HenceHook';
+import {HenceModel} from './lib/model';
+import {HenceSchema} from './lib/schema';
+import {HenceUi} from './lib/ui';
+import {HenceHook} from './lib/hook';
 
 let Hence = {
   Model: HenceModel,
   Schema: HenceSchema,
   Ui: HenceUi,
-  Hook: HenceHook
+  hook: HenceHook
 };
 
 export {HenceModel,HenceSchema,HenceUi,HenceHook}
