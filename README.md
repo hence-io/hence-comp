@@ -1,16 +1,15 @@
-# Hence Polymer Core
+# Hence Component Framework
 
 >
 
 ## About
 
-Polymer is one of the pillars of the Hence Component Framework. Hence Polymer Core is another pillar built on top of
-Polymer, designed to provide some essential standards to the types of components to be based off of, and other
-essential helpers and tools to build better components.
+Hence Component Framework is built on top of Polymer, designed to provide some essential standards to
+the types of components to be based off of, and other essential helpers and tools to build better components.
 
-As with the Component Framework, the Polymer Core is built in ES6 to leverage the latest benefits of native
-javascript, providing a streamlined way to create new Polymer components, sanitizing them to make sure they're
-sound, and allow for easier debugging as required.
+The Component Framework is built in ES6 to leverage the latest benefits of native javascript, providing a streamlined
+way to create new Polymer components, sanitizing them to make sure they're sound, and allow for easier debugging as
+required.
 
 ### HenceComp
 
@@ -64,7 +63,7 @@ The most effective way to work with and make use of the Hence Polymer Code is to
 A summary of the supported tools baked into it:
 
 * Included
-    * Hence Polymer Core
+    * Hence Component Framework
     * Polymer Web Components
     * ES6 / ES2015
         * Babel
@@ -84,18 +83,18 @@ A summary of the supported tools baked into it:
 
 For more details, check out the project on how to get up and running in minutes! https://github.com/hence-io/slush-hence
 
-# Getting Started with Hence Polymer Core
+# Getting Started with Hence Component Framework
 
 Getting the package from npm:
-```npm i --save hence-polycore```
+```npm i --save hence-component-framework```
 
 Getting the package from git:
-```npm i --save hence-io/hence-polycore```
+```npm i --save hence-io/hence-component-framework```
 
 ## Building Components
 
 ```javascript
-import {HenceUi, HenceModel, HenceSchema} from 'hence-polycore';
+import {HenceUi, HenceModel, HenceSchema} from 'hence-component-framework';
 
 // Choose which Component Type to build, Ui, Model, or Schema
 let MyElement = HenceUi({

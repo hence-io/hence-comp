@@ -1,9 +1,12 @@
 {
-  "name": "hence-polycore",
-  "version": "0.2.0",
+  "name": "hence-component-framework",
+  "version": "0.2.9",
   "description": "A core library for the ES6/Polymer web components used in the Hence.io framework",
   "author": "Sean 'Blitz' Homer <sean.homer@therefore.ca>",
-  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs": "npm run jsdocs && npm run esdocs",
