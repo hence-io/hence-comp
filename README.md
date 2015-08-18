@@ -178,7 +178,7 @@ export default Comp = Hence.Ui({
 });
 ```
 ```html
-// comp.html
+<!-- comp.html -->
 <dom-module is='my-comp'>
   <input value="{{callToAction.email::input}}" placeholder="email"></input>
   <button on-tap='eventCallToAction'>Sign Me Up!</button>
