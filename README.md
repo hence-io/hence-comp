@@ -57,8 +57,8 @@ backend, reducing the need for divergent schemas over different parts of the pro
 
 ## Hence Component Framework
 
-The most effective way to work with and make use of the Hence Polymer Code is to scaffold out some components via the
- [Hence Component Framework](https://github.com/hence-io/slush-hence).
+The most effective way to work with and make use of the framework is to scaffold out some components via the
+ [Hence Component Stack](https://github.com/hence-io/slush-hence).
 
 A summary of the supported tools baked into it:
 
