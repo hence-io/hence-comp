@@ -199,12 +199,13 @@ and originating event are provided should the hook be used between multiple Uis.
 
 #### Usage
 
+##### Simple
 This sample would dynamically generate a Comp and attach it to the document body. Clicking the button
 automatically triggers the hook action passed through from the callToAction property.
 
 ```javascript
-// comp.js
-export default Comp = Hence.Ui({
+// my-comp.js
+export default Hence.Ui({
   is:'my-comp',
   properties: {
     callToAction: Object
@@ -215,19 +216,75 @@ export default Comp = Hence.Ui({
 ```html
 <!-- comp.html -->
 <dom-module is='my-comp'>
-  <input value="{{callToAction.email::input}}" placeholder="email"></input>
-  <button on-tap='eventCallToAction'>Sign Me Up!</button>
+  <input value="{{callToAction.email::input}}" placeholder="email">
+  <button on-tap="eventCallToAction">Sign Me Up!</button>
 </dom-module>
 ```
 ```javascript
 // index.js
-import Comp from 'comp';
-Comp.appendToElement({
+import MyComp from 'my-comp';
+MyComp.appendToElement({
  callToAction: {
-   action: (data)=> {
-     console.log('I got an email from the component!',data.email);
+   action(data) {
+     console.log('I got an email from the component!', data.email);
    },
-   email: ''
+   email: ""
+ }
+});
+```
+
+##### Advanced
+
+In this sample, the optional prepareData callback is used here to show how the data can be tested, or adjusted before
+the hook's action is fired, or whether you need to abort it in the case of an error.
+
+This allows the Ui component to deal with what is relevant to it, with room for customizing it's results, but
+ultimately returning the data for the hook to do with it as it pleases.
+
+```javascript
+// my-comp.js
+export default Hence.Ui({
+  is:'my-comp',
+  properties: {
+    callToAction: Object,
+    emailError: String
+  },
+  eventCallToAction: Hence.hook('callToAction', (data)=> {
+    // Data in this case is referncing this.callToAction on the component, but this isn't always the case. The
+    // full targeted object will be accessible here, allowing you to prepare/adjust/check/leverage any aspect of it.
+
+    // Was a valid email inputted?
+    if(!data.email.match(/([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/)) {
+      // If we flag this, the resulting hook action will not fire.
+      data._error = true;
+
+      // Serve a custom error is provided, else show a default one.
+      this.emailError = data.customError || "You didn't enter a valid email, please correct it.";
+    }
+  }),
+  clearError() {
+    this.emailError = "";
+  }
+});
+```
+```html
+<!-- my-comp.html -->
+<dom-module is='my-comp'>
+  <input on-tap="clearError" value="{{callToAction.email::input}}" placeholder="email">
+  <button on-tap="eventCallToAction">Sign Me Up!</button>
+  <small class="error">{{emailError}}</small>
+</dom-module>
+```
+```javascript
+// index.js
+import MyComp from 'my-comp';
+MyComp.appendToElement({
+ callToAction: {
+   action(data) {
+     console.log('I got an email from the component!', data.email);
+   },
+   email: "",
+   customError: "Quit being lazy, enter a valid email!"
  }
 });
 ```
