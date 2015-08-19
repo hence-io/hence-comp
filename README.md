@@ -12,7 +12,7 @@
   - [Model](#model)
   - [Schema](#schema)
 - [Hence Component Stack](#hence-component-stack)
-- [Getting Started with Hence Component Framework](#getting-started-with-hence-component-framework)
+- [Getting Started](#getting-started)
   - [Building Components](#building-components)
     - [Creating Components Dynamically](#creating-components-dynamically)
     - [Appending Components Easily](#appending-components-easily)
@@ -103,7 +103,7 @@ A summary of the supported tools baked into it:
 
 For more details, check out the project on how to get up and running in minutes! https://github.com/hence-io/slush-hence
 
-## Getting Started with Hence Component Framework
+## Getting Started
 
 Getting the package from npm:
 ```npm i --save hence-component-framework```
@@ -134,7 +134,6 @@ fact that some components being built may not need to become full Polymer compon
 loaded.  This helps make them more flexible in a ES6 workspace as well when importing many components at once.
 
 #### Registering Components
-```Comp.registerElement()```
 
 If you have your component, ```<my-element sample='great'></my-element>``` on the DOM and do not register your component in
 Polymer, it effectively will do nothing until you do trigger ```registerElement```.
@@ -153,7 +152,6 @@ served when creating new elements, or support components already on the DOM.
 [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
 
 #### Creating Components Dynamically
-```Comp.appendChild(props)```
 
 You can easily create elements to add to the DOM. The ```createElement``` falls back on running the
 ```registerElement```, to ensure that the component you're trying to create was registered.
@@ -172,7 +170,6 @@ factoryImpl(...) function, which HenceComp uses to assign matching properties to
 [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
 
 #### Appending Components Easily
-```Comp.appendElementTo(props, target)```
 
 A simple helper function to append elements is ```appendElementTo```. Passing no target defaults to ```document.body```.
 
