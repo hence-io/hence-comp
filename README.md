@@ -2,6 +2,26 @@
 
 >
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [About](#about)
+  - [HenceComp](#hencecomp)
+- [Component Type Methodology](#component-type-methodology)
+  - [UI](#ui)
+  - [Model](#model)
+  - [Schema](#schema)
+- [Hence Component Stack](#hence-component-stack)
+- [Getting Started with Hence Component Framework](#getting-started-with-hence-component-framework)
+  - [Building Components](#building-components)
+    - [Creating Components Dynamically](#creating-components-dynamically)
+    - [Appending Components Easily](#appending-components-easily)
+  - [Event Hooks](#event-hooks)
+    - [Usage](#usage)
+  - [Polymer Integrity Checker](#polymer-integrity-checker)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## About
 
 Hence Component Framework is built on top of Polymer, designed to provide some essential standards to
@@ -83,7 +103,7 @@ A summary of the supported tools baked into it:
 
 For more details, check out the project on how to get up and running in minutes! https://github.com/hence-io/slush-hence
 
-# Getting Started with Hence Component Framework
+## Getting Started with Hence Component Framework
 
 Getting the package from npm:
 ```npm i --save hence-component-framework```
@@ -91,8 +111,8 @@ Getting the package from npm:
 Getting the package from git:
 ```npm i --save hence-io/hence-component-framework```
 
-## Building Components
-### ```Hence.[Ui|Model|Schema](componentConfig)```
+### Building Components
+```Hence.[Ui|Model|Schema](componentConfig)```
 
 ```javascript
 import Hence from 'hence-component-framework';
@@ -113,8 +133,8 @@ along the lines of Polymer.Class, so your components are not registered to the D
 fact that some components being built may not need to become full Polymer components at run time, and can be lazy
 loaded.  This helps make them more flexible in a ES6 workspace as well when importing many components at once.
 
-### Registering Components
-#### ```Comp.registerElement()``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
+#### Registering Components
+```Comp.registerElement()```
 
 If you have your component, ```<my-element sample='great'></my-element>``` on the DOM and do not register your component in
 Polymer, it effectively will do nothing until you do trigger ```registerElement```.
@@ -130,8 +150,10 @@ MyElement.registerElement(); // returns a Polymer object, and ensures to registe
 This initialize the Polymer Class, and ensure it is only performed once, staticly storing the Polymer object to be
 served when creating new elements, or support components already on the DOM.
 
-### Creating Components Dynamically
-#### ```Comp.appendChild(props)``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
+[Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
+
+#### Creating Components Dynamically
+```Comp.appendChild(props)```
 
 You can easily create elements to add to the DOM. The ```createElement``` falls back on running the
 ```registerElement```, to ensure that the component you're trying to create was registered.
@@ -147,8 +169,11 @@ document.body.appendChild(el); // add our el to the end of the body now
 This create a new element, leveraging Polymers constructor method, allowing us to pass in parameters and execute the
 factoryImpl(...) function, which HenceComp uses to assign matching properties to your new element.
 
+[Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
+
 #### Appending Components Easily
-#### ```Comp.appendElementTo(props, target)``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
+```Comp.appendElementTo(props, target)```
+
 A simple helper function to append elements is ```appendElementTo```. Passing no target defaults to ```document.body```.
 
 ```javascript
@@ -157,8 +182,10 @@ import MyElement from './my-element.js';
 MyElement.appendElementTo(props, document.querySelector('#myElement')); // lets build an element, and append it to our target
 ```
 
+[Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
+
 ### Event Hooks
-#### ```Hence.hook(target, prepareData)``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/hook.js)
+```Hence.hook(target, prepareData)```
 
 Provides an easy accessible hook function for the component to leverage. With accepting a object parameter which
 contains an action method, this will provide a bindable event in the component's template, and automatically call
@@ -171,7 +198,9 @@ Ideal use of these hooks are inside of Ui components, triggering hooks back to M
 event and model digest, and serve the Model exactly the data it needs. Additional parameters returned, the model
 and originating event are provided should the hook be used between multiple Uis.
 
-#### Sample Usage
+[Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/hook.js)
+
+#### Usage
 
 This sample would dynamically generate a Comp and attach it to the document body. Clicking the button
 automatically triggers the hook action passed through from the callToAction property.
@@ -206,9 +235,7 @@ Comp.appendToElement({
 });
 ```
 
->
-
-## Polymer Integrity Checker
+### Polymer Integrity Checker
 
 As you begin to work with Polymer, once and a while you'll start to make changes to your components, and things will
 go astray and break, seemingly without any indication that something has gone wrong. When working with multiple
