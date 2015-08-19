@@ -55,7 +55,7 @@ backend, reducing the need for divergent schemas over different parts of the pro
 
 >
 
-## Hence Component Framework
+## Hence Component Stack
 
 The most effective way to work with and make use of the framework is to scaffold out some components via the
  [Hence Component Stack](https://github.com/hence-io/slush-hence).
