@@ -91,7 +91,8 @@ Getting the package from npm:
 Getting the package from git:
 ```npm i --save hence-io/hence-component-framework```
 
-## Building Components ```Hence.[Ui|Model|Schema](componentConfig)```
+## Building Components
+### ```Hence.[Ui|Model|Schema](componentConfig)```
 
 ```javascript
 import Hence from 'hence-component-framework';
@@ -112,7 +113,8 @@ along the lines of Polymer.Class, so your components are not registered to the D
 fact that some components being built may not need to become full Polymer components at run time, and can be lazy
 loaded.  This helps make them more flexible in a ES6 workspace as well when importing many components at once.
 
-### Registering Components ```Comp.registerElement()```
+### Registering Components
+#### ```Comp.registerElement()``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
 
 If you have your component, ```<my-element sample='great'></my-element>``` on the DOM and do not register your component in
 Polymer, it effectively will do nothing until you do trigger ```registerElement```.
@@ -125,9 +127,11 @@ import MyElement from './my-element.js';
 MyElement.registerElement(); // returns a Polymer object, and ensures to register it as a custom element.
 ```
 
-This method safely only ever registers the element once, staticly storing the Polymer object.
+This initialize the Polymer Class, and ensure it is only performed once, staticly storing the Polymer object to be
+served when creating new elements, or support components already on the DOM.
 
-### Creating Components Dynamically ```Comp.appendChild(props)```
+### Creating Components Dynamically
+#### ```Comp.appendChild(props)``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
 
 You can easily create elements to add to the DOM. The ```createElement``` falls back on running the
 ```registerElement```, to ensure that the component you're trying to create was registered.
@@ -140,7 +144,11 @@ let el = MyElement.createElement(props); // lets build an element
 document.body.appendChild(el); // add our el to the end of the body now
 ```
 
-#### Appending Components Easily ```Comp.appendElementTo(props, target)```
+This create a new element, leveraging Polymers constructor method, allowing us to pass in parameters and execute the
+factoryImpl(...) function, which HenceComp uses to assign matching properties to your new element.
+
+#### Appending Components Easily
+#### ```Comp.appendElementTo(props, target)``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
 A simple helper function to append elements is ```appendElementTo```. Passing no target defaults to ```document.body```.
 
 ```javascript
@@ -149,7 +157,8 @@ import MyElement from './my-element.js';
 MyElement.appendElementTo(props, document.querySelector('#myElement')); // lets build an element, and append it to our target
 ```
 
-### Event Hooks ```Hence.hook(target, prepareData)```
+### Event Hooks
+#### ```Hence.hook(target, prepareData)``` [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/hook.js)
 
 Provides an easy accessible hook function for the component to leverage. With accepting a object parameter which
 contains an action method, this will provide a bindable event in the component's template, and automatically call
@@ -196,4 +205,27 @@ Comp.appendToElement({
  }
 });
 ```
+
 >
+
+## Polymer Integrity Checker
+
+As you begin to work with Polymer, once and a while you'll start to make changes to your components, and things will
+go astray and break, seemingly without any indication that something has gone wrong. When working with multiple
+components tied into each other, tireless hours potentially can get lost trying to determine what it is you did.
+
+This is in part largely to Polymers inability to detect whether or not you've overridden one of it's essential
+methods or properties it has. It literally allows you to hijack it's core attributes and methods unknowingly and can
+produce mixed results from slight a disruption or blanking out your components completely, without raising a single
+console error or notice. Even worse, is the component many render and work mostly, and until you perform a specific
+action will you start to see it fail, giving a false illusion everything is aok.
+
+Because of this lacking feature in the Polymer core, we decided to build our own Integrity Checker, so thwart
+potential bugs from reusing reserved property & key names outright. In addition, it will tell you what method or
+property names you're trying to use that are in conflict on a specific component.
+
+Whenever you stumble upon a reserved name, you will receive a detailed console warning so you can address it promptly
+. No more mystery or confusion in tracking down what you've overridden.
+
+<img width="935" alt="screen shot 2015-08-19 at 10 32 47 am" src="https://cloud.githubusercontent.com/assets/13222640/9359541/9b35148e-465f-11e5-85b7-f3c395417d37.png">
+<img width="882" alt="screen shot 2015-08-19 at 10 44 00 am" src="https://cloud.githubusercontent.com/assets/13222640/9359542/9b4259d2-465f-11e5-9b24-5561cb3beec2.png">
