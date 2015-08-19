@@ -224,7 +224,7 @@ Because of this lacking feature in the Polymer core, we decided to build our own
 potential bugs from reusing reserved property & key names outright. In addition, it will tell you what method or
 property names you're trying to use that are in conflict on a specific component.
 
-Whenever you stumble upon a reserved name, you will receive a detailed console warning so you can address it promptly
+Whenever you stumble upon a reserved name, you will receive a detailed console error so you can address it promptly
 . No more mystery or confusion in tracking down what you've overridden.
 
 <img width="910" alt="screen shot 2015-08-19 at 10 51 16 am" src="https://cloud.githubusercontent.com/assets/13222640/9359667/4514920e-4660-11e5-8397-5f81ba8abc18.png">
