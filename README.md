@@ -182,7 +182,6 @@ MyElement.appendElementTo(props, document.querySelector('#myElement')); // lets 
 [Source](https://github.com/hence-io/hence-component-framework/blob/master/lib/core.js)
 
 ### Event Hooks
-```Hence.hook(target, prepareData)```
 
 Provides an easy accessible hook function for the component to leverage. With accepting a object parameter which
 contains an action method, this will provide a bindable event in the component's template, and automatically call
@@ -225,8 +224,8 @@ export default Hence.Ui({
 import MyComp from 'my-comp';
 MyComp.appendToElement({
  callToAction: {
-   action(data) {
-     console.log('I got an email from the component!', data.email);
+   action(model, e) {
+     console.log('I got an email from the component!', this.email);
    },
    email: ""
  }
@@ -249,19 +248,24 @@ export default Hence.Ui({
     callToAction: Object,
     emailError: String
   },
-  eventCallToAction: Hence.hook('callToAction', (data)=> {
-    // Data in this case is referncing this.callToAction on the component, but this isn't always the case. The
+  hooks: {
+    callToAction: 'prepareData'
+  },
+  prepareData(data, model, e) {
+    // Data in this case is referencing this.callToAction on the component, but this isn't always the case. The
     // full targeted object will be accessible here, allowing you to prepare/adjust/check/leverage any aspect of it.
 
+    console.log('calltoaction with', [this, data, model, e], arguments);
+
     // Was a valid email inputted?
-    if(!data.email.match(/([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/)) {
+    if (!data.email.match(/([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/)) {
       // If we flag this, the resulting hook action will not fire.
       data._error = true;
 
       // Serve a custom error is provided, else show a default one.
       this.emailError = data.customError || "You didn't enter a valid email, please correct it.";
     }
-  }),
+  },
   clearError() {
     this.emailError = "";
   }
@@ -271,7 +275,7 @@ export default Hence.Ui({
 <!-- my-comp.html -->
 <dom-module is='my-comp'>
   <input on-tap="clearError" value="{{callToAction.email::input}}" placeholder="email">
-  <button on-tap="eventCallToAction">Sign Me Up!</button>
+  <button on-tap="hook.callToAction">Sign Me Up!</button>
   <small class="error">{{emailError}}</small>
 </dom-module>
 ```
@@ -280,8 +284,8 @@ export default Hence.Ui({
 import MyComp from 'my-comp';
 MyComp.appendToElement({
  callToAction: {
-   action(data) {
-     console.log('I got an email from the component!', data.email);
+   action(model, e) {
+     console.log('I got an email from the component!', this.email);
    },
    email: "",
    customError: "Quit being lazy, enter a valid email!"
