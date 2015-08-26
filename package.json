@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs": "npm run jsdocs && npm run esdocs",
+    "docs": "npm run jsdocs && npm run esdocs && npm run docco",
+    "docco": "docco -o docs/docco lib/*.js && docco -o docs/docco lib/**/*.js",
     "esdocs": "esdoc -c .esdoc.json",
     "jsdocs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
   },
