@@ -8,7 +8,7 @@ If you are new to these topics, or would like a brief brush up, continue reading
  these, feel free to skip ahead to the action in [Getting Started](#getting-started)!
 
 ## Polymer
-Google's' [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption
+Google's [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption
 of web components into your projects today! While the browsers work to support these natively, Polymer servers as tool
 to help you build and create custom elements, but it is much more than a polyfill library.
 
