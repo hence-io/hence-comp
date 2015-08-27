@@ -58,15 +58,6 @@ At present, browsers are still working to fully support ES6 natively, and while 
  [Babel JS](https://babeljs.io/) & [Traceur](https://github.com/google/traceur-compiler) are the most prevalent ES6
   transpilers out there in the community.
 
-When native support in browsers has standardized, and we can throw away those dusty old ones, the theory is that these
- transpilers will go away. At the time of writing this, the modern browsers are getting quite close to full support.
- [ES6 Compatibility Support](http://kangax.github.io/compat-table/es6/)
-
-While it's a possibility these could be phased out, from many tools like these which started by letting us use future
-concepts sooner, they continue to push the edge of development given how slow language specification takes to change.
- Transpilers a buffer for writing native code today for the future, and once you've had a taste, you will understand
- why having them stick around isn't a bad thing whatsoever!
-
 **Babel JS** https://babeljs.io/
 
 Babel is the transpiler of choice used in this article. As well it is seemingly being the de facto transpiler of choice.
@@ -78,6 +69,33 @@ Babel is very versatile whether you're leveraging it from the command line and f
 tools, with detailed examples of how to accomplish this on their website.  Their site on the whole is actually quite
 awesome, also providing you a full comprehensive summary of ES6 concepts, to experimental ES7 support (hell yes!),
 and a sandbox for you to test code in.
+
+### Native ES6 Support
+
+*Will native ES6 browser support to do away with Transpilers?*
+
+When native support in browsers has standardized, and we can throw away those dusty old ones, the theory is that these
+ transpilers will go away. At the time of writing this, the modern browsers are getting quite close to full support.
+ [ES6 Compatibility Support](http://kangax.github.io/compat-table/es6/)
+
+While it's a possibility these could be phased out, from many tools like these which started by letting us use future
+concepts sooner, they continue to push the edge of development given how slow language specification takes to change.
+ Transpilers are a buffer for writing native code today for the future, and once you've had a taste, you will understand
+ why having them stick around isn't a bad thing whatsoever!
+
+*Where can I use ES6 native already?*
+
+For browser support, again review the up to date [ES6 Compatibility Support](http://kangax.github.io/compat-table/es6/).
+For support on the tooling and server side of things, there're a few options you may not yet know about.
+
+- Gulp - The popular stream build system added Babel in their [v3.9 release](https://github.com/gulpjs/gulp/blob/master/CHANGELOG.md)
+  - To make use of it, simply rename your gulp file to ```gulpfile.babel.js```
+  - While it make work off the bat, you may see some errors while it processes. It's recommended you install the
+  bable-core to assist Gulp. ```npm i -D babel bable-core```
+- NodeJs/IO.js - While IO.js began as a fork of Node with developers wanting keep improvements going without
+hindrance, the have since reconciled with Node, and the official Node repo now serves the latest IO.js version. The
+beautiful thing about this, **IO.js runs ES6 natively already!**
+
 
 ### Learn ES6
 
