@@ -8,12 +8,9 @@ If you are new to these topics, or would like a brief brush up, continue reading
  these, feel free to skip ahead to the action in [Getting Started](#getting-started)!
 
 ## Polymer
-Google's [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption
-of web components into your projects today! While the browsers work to support these natively, Polymer servers as tool
-to help you build and create custom elements, but it is much more than a polyfill library.
+Google's [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption of web components into your projects today! While the browsers work to support these natively, Polymer serves as tool to help you build and create custom elements, but it is much more than a polyfill library.
 
-> The Polymer library is designed to make it easier and faster for developers to create great, reusable components for
-the modern web.
+> The Polymer library is designed to make it easier and faster for developers to create great, reusable components for the modern web.
 
 ### Componentization
 
@@ -43,7 +40,7 @@ empowers developers to write cleaner native code that packs a punch.
 
 From adding true class support, to improved variable scoping, native module support... there's no lack of amazing
 and essential improvements to the language we **all** know and love (...well, most of us!). These are just a
-few is the goodies waiting for you to make use of, but before you throw caution to the wind, there are some things to
+few of the goodies waiting for you to make use of, but before you throw caution to the wind, there are some things to
  consider when taking on the task of diving into ES6.
 
 ### Transpiler
