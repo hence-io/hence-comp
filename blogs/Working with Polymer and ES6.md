@@ -7,6 +7,8 @@ Welcome. This article is aimed to help introduce you to the concepts of Polymer 
 If you are new to these topics, or would like a brief brush up, continue reading below. If you're seasoned in
  these, feel free to skip ahead to the action in [Getting Started](#getting-started)!
 
+
+
 ## Polymer
 Google's' [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption
 of web components into your projects today! While the browsers work to support these natively, Polymer servers as tool
@@ -35,6 +37,8 @@ documentation to help get you going and versed in the particulars.
 leveraged, and serve as practical examples of components in action.
 - [WebComponents.org](http://webcomponents.org/) - A site dedicated to information, articles, and more on all things
 web component related.
+
+
 
 ## ECMAScript 6 (ES6)
 ES6, the next evolution of the Javascript language. If you haven't heard of it yet, clearly you've been living under a
@@ -95,7 +99,9 @@ ES6 was officially agreed upon as a standard as of June 2015. The
 ES2015 in lieu of this. Before ES6 it had been referenced as Harmony, but ES6 is still the widely adopted name, as
 regardless of the extra labels, it is still ECMAScript 6 in the end.
 
+
 ---
+
 
 ## Getting Started
 
