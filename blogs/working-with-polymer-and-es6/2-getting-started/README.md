@@ -200,3 +200,7 @@ site. It automatically serves the ```index.html``` as the homepage, and launches
 Haven't you ever hear good things come to those who wait? Without understanding the basics of how each part of the
 process works, you'd have a harder time trusting a tool that just does everything for you. And fear not, there're
 some awesome ways to tackle these build tasks efficiently we'll be exploring soon!
+
+---
+
+## [Continuing Reading Part 3](https://github.com/hence-io/hence-component-framework/tree/master/blogs/working-with-polymer-and-es6/3-exporing-components)

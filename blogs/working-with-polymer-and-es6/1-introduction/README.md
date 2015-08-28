@@ -149,4 +149,4 @@ Need to include a slider or gallery plugin as well to your component? No problem
 
 ---
 
-[Continuing reading Part 2]() of this article.
+## [Continuing Reading Part 2](https://github.com/hence-io/hence-component-framework/tree/master/blogs/working-with-polymer-and-es6/2-getting-started)
