@@ -1,0 +1,23 @@
+# Working with Polymer and ES6
+
+Welcome. This multi-part article is aimed to help introduce you to the concepts of Polymer & ES6, how these two
+technologies  can work together to achieve some awesome things, and lightly touch on some build and workflow tools to
+assist you in becoming more proficient.
+
+## [Part 1 - Introduction]()
+
+In Part 1, we will be exploring what Polymer and ES6 are all about, and why working with them can be beneficial.
+
+If you are new to these topics, or would like a brief brush up, it's highly recommend you start with reading here
+from the beginning.  If you're seasoned in those tools, you may still find some help tidbits, but feel free to skip
+ahead to the action in Part 2!
+
+## [Part 2 - Getting Started]()
+
+In Part 2, we will be getting a sample project set up for you to begin using Polymer and ES6 together, rendering your
+ first web component.
+
+## [Part 3 - Exploring Components]()
+
+In Part 3, we are now ready to start expanding and featurizing our new component to make it a practical component we
+could see ourselves using in a site or web application.

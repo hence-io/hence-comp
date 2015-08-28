@@ -1,16 +1,14 @@
-# Working with Polymer and ES6
+# Working with Polymer and ES6 - Introduction
 
-Welcome. This article is aimed to help introduce you to the concepts of Polymer & ES6, how these two technologies
- can work together to achieve some awesome things, and lightly touch on some build and workflow tools to assist you in
- becoming more proficient.
-
-If you are new to these topics, or would like a brief brush up, continue reading below. If you're seasoned in
- these, feel free to skip ahead to the action in [Getting Started](#getting-started)!
+In Part 1, we will be exploring what Polymer and ES6 are all about, and why working with them can be beneficial.
 
 ## Polymer
-Google's [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption of web components into your projects today! While the browsers work to support these natively, Polymer serves as tool to help you build and create custom elements, but it is much more than a polyfill library.
+Google's [Polymer Project](https://www.polymer-project.org/1.0/) is a wonderful library helping to propel the adoption
+of web components into your projects today! While the browsers work to support these natively, Polymer serves as tool to
+help you build and create custom elements, but it is much more than a polyfill library.
 
-> The Polymer library is designed to make it easier and faster for developers to create great, reusable components for the modern web.
+> The Polymer library is designed to make it easier and faster for developers to create great, reusable components for
+the modern web.
 
 ### Componentization
 
@@ -28,6 +26,9 @@ months ago, and start to tiptoe through the mine field again until you're profic
 Here are some great resources of what Polymer offers if you're unfamiliar:
 - [Polymer Project](https://www.polymer-project.org/1.0/) - The official Polymer library web site with a ton of
 documentation to help get you going and versed in the particulars.
+- [Polymer's Developer Guide](https://www.polymer-project.org/1.0/docs/devguide/feature-overview.html) - A full dev
+guide on the ins and outs of Polymer, giving you great insight on what it is capable of and how to leverage it's
+features.
 - [Polymer Catalog](https://elements.polymer-project.org/) - An official collection of Polymer components to be
 leveraged, and serve as practical examples of components in action.
 - [WebComponents.org](http://webcomponents.org/) - A site dedicated to information, articles, and more on all things
@@ -85,14 +86,14 @@ concepts sooner, they continue to push the edge of development given how slow la
 For browser support, again review the up to date [ES6 Compatibility Support](http://kangax.github.io/compat-table/es6/).
 For support on the tooling and server side of things, there're a few options you may not yet know about.
 
-- Gulp - The popular stream build system added Babel in their [v3.9 release](https://github.com/gulpjs/gulp/blob/master/CHANGELOG.md)
+- Gulp - The popular stream build system added Babel in their
+[v3.9 release](https://github.com/gulpjs/gulp/blob/master/CHANGELOG.md)
   - To make use of it, simply rename your gulp file to ```gulpfile.babel.js```
   - While it make work off the bat, you may see some errors while it processes. It's recommended you install the
   bable-core to assist Gulp. ```npm i -D babel bable-core```
 - NodeJs/IO.js - While IO.js began as a fork of Node with developers wanting keep improvements going without
 hindrance, the have since reconciled with Node, and the official Node repo now serves the latest IO.js version. The
 beautiful thing about this, **IO.js runs ES6 natively already!**
-
 
 ### Learn ES6
 
@@ -110,8 +111,42 @@ ES6 was officially agreed upon as a standard as of June 2015. The
 ES2015 in lieu of this. Before ES6 it had been referenced as Harmony, but ES6 is still the widely adopted name, as
 regardless of the extra labels, it is still ECMAScript 6 in the end.
 
+## Package Managers
+
+Package managers are an essential part of the build and development process, allowing teams of developers to work
+together and add in or update project dependencies with ease (more often than not). Two essential dependencies
+managers are used through out this article, allowing you to get up and running right away so you can follow along.
+
+### Bower
+
+Bower is a front end focused package manager. The packages found on this are targeted at code you would find
+on the client side, dealing largely with ui/ux, and many other plugins and utilities. In addition, this is where
+presently a large amount of Polymer components reside, include Polymer itself and the official components featured on
+ the component catalog mentioned above.
+
+ We will be using bower to include Polymer and supporting components.
+
+### NPM
+
+NPM is NodeJS's Package Manager. As long as you have Node installed, NPM comes along with it already for you to
+leverage. While at times packages hosted on NPM can tend to be considered 'Node focused', more often than not the
+code is native javascript that works just fine on the client side as well as server side. In fact, because of using
+ES6, which has native module importing, you largely can use any NPM code package you want to help build your front
+end components! This is especially helpful in building specific and isolated code.
+
+### Leveraging Bower & NPM packages together in ES6
+ A clear example of the power in ES6 is comparing the [Lodash](https://github.com/lodash/lodash) NPM package file vs.
+  it's Bower package file. NPM allows you to specific a main file, which is leveraged when you ```import _ from
+  'lodash';```, and additional to include specific sections or even singular methods from lodash with paths, such as
+  ```import _clone from 'lodash/object/clone';``` giving you a specific lodash method to work with. Conversely, the
+  Bower package only allows you to include the whole package, and if loaded in to your html by a script tag, with no
+  way to isolate what code you actually need from it on the front end. This is one of the awesome benefits of
+  leveraging ES6!
+
+Need to include a slider or gallery plugin as well to your component? No problem, install it through bower and import
+ just the same ```import d3 from 'd3';```, and you're golden! Mix and match packages as you deem fit to get the most
+ benefit out of your tools.
+
 ---
 
-## Getting Started
-
-You've dabbled in these two technologies, and now you're itching to dive in and get into the thick of it.
+[Continuing reading Part 2]() of this article.

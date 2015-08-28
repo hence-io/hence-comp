@@ -1,0 +1,21 @@
+<!-- First, we must always import Polymers core, so that our component will be definable. -->
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<!-- The dom-module tells Polymer what isolated html, styles, and JS applied to your given component. -->
+<dom-module id="my-sample">
+  <!-- Styles here are isolated to the scope of this component alone, to help reduce global style cruft. -->
+  <style>
+    /* A specialized selector which applies base styles to your component. */
+    :host {
+      color: #0000FF;
+    }
+  </style>
+  <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->
+  <template>
+    <p>
+      Web Components Rock!
+    </p>
+  </template>
+  <!-- Include our ES6 generated script file to define our component. -->
+  <script src="my-sample.js"></script>
+</dom-module>

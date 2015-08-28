@@ -1,0 +1,22 @@
+{
+  "name": "working-with-polymer-and-es6",
+  "version": "0.2.9",
+  "homepage": "https://github.com/hence-io/hence-component-framework",
+  "authors": [
+    "Sean 'Blitz' Homer <sean.homer@therefore.ca>"
+  ],
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "~1.1.1"
+  }
+}
