@@ -154,7 +154,7 @@ npm run compile
 A couple of things are occurring to give use the working file we need for the browser.
 
 1. Babel is transpiling the JS into a temporary ES5 compatible file. Because ES6 is module based, the code isn't
-usable directly in the browser just yet. By default, Babel compiles code to be in the CommonJS format (similar to Node).
+usable directly in the browser just yet. By default, Babel compiles code to be in the CommonJS format (used by Node).
 2. Browserify is being used to bundle the module and expose it globally, to make it browser friendly. This creates
 the needed file in which our ```my-sample.html``` template is targeting.
 3. The temporary file is being removed to clean things up.
