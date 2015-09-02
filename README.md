@@ -1,6 +1,6 @@
 # Hence Component Framework
 
->
+---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -41,7 +41,7 @@ A critical addition to this is a integrity checker to ensure properties and meth
 conflict with Polymer, prevent disastrous errors which go unchecked by Polymer, so you can address them promptly
 during development.
 
->
+---
 
 ## Component Type Methodology
 
@@ -73,7 +73,7 @@ Because of the interoperable nature of these components, they are still able to 
 server API side of your project, if Node/iojs based, allowing the data validation methods to support front and
 backend, reducing the need for divergent schemas over different parts of the project.
 
->
+---
 
 ## Hence Component Stack
 
