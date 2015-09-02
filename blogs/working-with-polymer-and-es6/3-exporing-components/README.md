@@ -81,11 +81,11 @@ configured when it is spawned and or added to the DOM.
 
 >The element’s basic initialization order is:
 >
->created callback
->local DOM initialized
->ready callback
->factoryImpl callback
->attached callback
+> - created callback
+> - local DOM initialized
+> - ready callback
+> - factoryImpl callback
+> - attached callback
 
 They declared up front that the order in which these execute is not guaranteed, but they are able to
 ensure some of the hooks do execute in a manageable sequence.
@@ -96,9 +96,9 @@ templates.
 
 >For a given element:
 >
->The created callback is always called before ready.
->The ready callback is always called before attached.
->The ready callback is called on any local DOM children before it’s called on the host element.
+> - The created callback is always called before ready.
+> - The ready callback is always called before attached.
+> - The ready callback is called on any local DOM children before it’s called on the host element.
 
 Add into the mix components with in components, sibling components and so forth, it can get quite complicated!
 
@@ -110,13 +110,14 @@ Let's add these methods to our component with details on what they're trying to 
 
 ```javascript
 const config = {
-  is, // In ES6, setting a key equal to a matching name variable can be shorten
-  factoryImpl()=> {
+  ...
+  factoryImpl() {
   },
-  created: ()=> {
+  created() {
     // I do stuff
   },
-  ready: ()=> {
+
+  ready() {
     // `ready` is called after all elements have been configured, but
     // propagates bottom-up. This element's children are ready, but parents
     // are not.
@@ -124,7 +125,7 @@ const config = {
     // This is the point where you should make modifications to the DOM (when
     // necessary), or kick off any processes the element wants to perform.
   },
-  attached: ()=> {
+  attached() {
     // `attached` fires once the element and its parents have been inserted
     // into a document.
     //
@@ -132,15 +133,15 @@ const config = {
     // visual state or active behavior (measuring sizes, beginning animations,
     // loading resources, etc).
   },
-  detached: ()=> {
+  detached() {
     // The analog to `attached`, `detached` fires when the element has been
     // removed from a document.
     //
     // Use this to clean up anything you did in `attached`.
-  }
+  },
+  ...
 }
 ```
-
 
 
 ### Listeners
