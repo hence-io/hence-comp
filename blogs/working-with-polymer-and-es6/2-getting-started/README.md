@@ -119,7 +119,6 @@ export {is, config};
 
 // Expose our component so it can be used dynamically later.
 export default MyCard;
-
 ```
 
 ### Compiling your ES6 Code
