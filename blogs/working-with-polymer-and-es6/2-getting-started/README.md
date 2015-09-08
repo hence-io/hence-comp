@@ -19,7 +19,7 @@ It's time to start exploring what we can actually do with Polymer and ES6 togeth
 Starting off with a fresh folder, we will begin by creating our new sample project.
 
 ```bash
-mkdir my-sample && cd my-sample
+mkdir my-card && cd my-card
 ```
 
 Having installed the [prerequisites](#Prerequisites) from above, next we'll initialize an NPM and Bower package so you
@@ -63,24 +63,24 @@ To start with, we'll create a ```index.html``` which will be used to preview the
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
   <!-- Leveraging Polymer components require you to import your components to make use of them. -->
-  <link rel="import" href="./my-sample.html">
+  <link rel="import" href="./my-card.html">
 </head>
 <body>
   <!-- Lets render our component! -->
-  <my-sample></my-sample>
+  <my-card></my-card>
 </body>
 </html>
 ```
 
 If you were to open this file in your web browser right now, you don't get to see much. We don't have our component
-created yet, so lets do that now! Add a ```my-sample.html```
+created yet, so lets do that now! Add a ```my-card.html```
 
 ```html
 <!-- First, we must always import Polymers core, so that our component will be definable. -->
 <link rel="import" href="bower_components/polymer/polymer.html">
 
 <!-- The dom-module tells Polymer what isolated html, styles, and JS applied to your given component. -->
-<dom-module id="my-sample">
+<dom-module id="my-card">
   <!-- Styles here are isolated to the scope of this component alone, to help reduce global style cruft. -->
   <style>
     /* A specialized selector which applies base styles to your component. */
@@ -95,30 +95,30 @@ created yet, so lets do that now! Add a ```my-sample.html```
     </p>
   </template>
   <!-- Include our ES6 generated script file to define our component. -->
-  <script src="my-sample.js"></script>
+  <script src="my-card.js"></script>
 </dom-module>
 ```
 
-Lastly, we still start off with a simplified component definition to get things started in ```my-sample.es6.js```.
+Lastly, we still start off with a simplified component definition to get things started in ```my-card.es6.js```.
 
 ```javascript
 'use strict'; // Some browsers still require this
 
 // Match this to your component tag name, which must contain a [prefix]-[name]
-const is = 'my-sample';
+const is = 'my-card';
 
 const config = {
   is // In ES6, setting a key equal to a matching name variable can be shorten
 };
 
-// Define the MySample component for Polymer, which will automatically register it on the DOM for us after.
-const MySample = Polymer(config);
+// Define the MyCard component for Polymer, which will automatically register it on the DOM for us after.
+const MyCard = Polymer(config);
 
 // Expose some helpful parts of the component should they be leveraged by other components.
 export {is, config};
 
 // Expose our component so it can be used dynamically later.
-export default MySample;
+export default MyCard;
 
 ```
 
@@ -126,8 +126,8 @@ export default MySample;
 
 Now that we have the basic examples in place, it's time to compile your ES6 code to test our your component.
 
-If you noticed in the ```my-sample.html``` template file, the script bring referenced is ```my-sample.js``` and not
-the file we named our script as, ```my-sample.es6.js```. This is because we need to use our transpile, Babel, to
+If you noticed in the ```my-card.html``` template file, the script bring referenced is ```my-card.js``` and not
+the file we named our script as, ```my-card.es6.js```. This is because we need to use our transpile, Babel, to
 convert it to ES5 code so that the browser can understand it. To do this, we need to run the Babel CLI to transpile
 our code down for us to the file our component wants to access, and expose it by bundling it using Browserify.
 
@@ -139,7 +139,7 @@ Add the following to the ```scripts``` object:
 
 ```json
 scripts : {
-  "compile": "./node_modules/.bin/babel my-sample.es6.js -o .my-sample.js && ./node_modules/.bin/browserify .my-sample.js -o my-sample.js && rm .my-sample.js"
+  "compile": "./node_modules/.bin/babel my-card.es6.js -o .my-card.js && ./node_modules/.bin/browserify .my-card.js -o my-card.js && rm .my-card.js"
 }
 ```
 
@@ -156,7 +156,7 @@ A couple of things are occurring to give use the working file we need for the br
 1. Babel is transpiling the JS into a temporary ES5 compatible file. Because ES6 is module based, the code isn't
 usable directly in the browser just yet. By default, Babel compiles code to be in the CommonJS format (used by Node).
 2. Browserify is being used to bundle the module and expose it globally, to make it browser friendly. This creates
-the needed file in which our ```my-sample.html``` template is targeting.
+the needed file in which our ```my-card.html``` template is targeting.
 3. The temporary file is being removed to clean things up.
 
 ### Serving your Component
@@ -172,7 +172,7 @@ To make this convenient to start on the fly, open up your ```package.json``` aga
 
 ```json
 scripts : {
-  "compile": "./node_modules/.bin/babel my-sample.es6.js -o .my-sample.js && ./node_modules/.bin/browserify .my-sample.js -o my-sample.js && rm .my-sample.js",
+  "compile": "./node_modules/.bin/babel my-card.es6.js -o .my-card.js && ./node_modules/.bin/browserify .my-card.js -o my-card.js && rm .my-card.js",
   "start": "npm run compile && ./node_modules/.bin/browser-sync start --server --files 'index.html'"
 }
 ```
@@ -183,7 +183,7 @@ From you console now you serve your component. BrowserSync will automatically op
 npm start
 ```
 
-You should now see the my-sample component displaying with the default label 'Web Components Rock!' in blue if
+You should now see the my-card component displaying with the default label 'Web Components Rock!' in blue if
 everything went successful.
 
 *What is going on with this compile command?*

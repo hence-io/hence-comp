@@ -30,23 +30,23 @@ Here's the highlights of what we'll be covering:
 
 A Polymer object is registered by you defining it in your JS file:
 ```javascript
-const MySample = Polymer({...});
+const MyCard = Polymer({...});
 ```
 
 The inclusion of this inside your component allows it to then be placed on the DOM, as with the ```index.html``` or
 generated in code to spawn new components:
 
 ```html
-<my-sample></my-stample>
+<my-card></my-stample>
 ```
 
 ```javascript
 // Create an element through object construction
-let el = new MySample(); // spawn a new component
+let el = new MyCard(); // spawn a new component
 document.findById('my-div').appendChild(el); append it to a div
 
 // Create an element via the document
-let el2 = document.createElement('my-sample');
+let el2 = document.createElement('my-card');
 document.findById('my-div').appendChild(el2); append it to a div
 ```
 

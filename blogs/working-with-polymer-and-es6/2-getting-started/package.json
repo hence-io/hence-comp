@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "./node_modules/.bin/babel my-sample.es6.js -o .my-sample.js && ./node_modules/.bin/browserify .my-sample.js -o my-sample.js && rm .my-sample.js",
+    "compile": "./node_modules/.bin/babel my-card.es6.js -o .my-card.js && ./node_modules/.bin/browserify .my-card.js -o my-card.js && rm .my-card.js",
     "start": "npm run compile && ./node_modules/.bin/browser-sync start --server --files 'index.html'"
   },
   "author": "",

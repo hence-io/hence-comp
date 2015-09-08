@@ -5,20 +5,20 @@
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
-var is = 'my-sample';
+var is = 'my-card';
 
 var config = {
   is: is // In ES6, setting a key equal to a matching name variable can be shorten
 };
 
-// Define the MySample component for Polymer, which will automatically register it on the DOM for us after.
-var MySample = Polymer(config);
+// Define the MyCard component for Polymer, which will automatically register it on the DOM for us after.
+var MyCard = Polymer(config);
 
 // Expose some helpful parts of the component should they be leveraged by other components.
 exports.is = is;
 exports.config = config;
 
 // Expose our component so it can be used dynamically later.
-exports['default'] = MySample;
+exports['default'] = MyCard;
 
 },{}]},{},[1]);
