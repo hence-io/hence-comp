@@ -37,7 +37,7 @@ The inclusion of this inside your component allows it to then be placed on the D
 generated in code to spawn new components:
 
 ```html
-<my-card></my-stample>
+<my-card></my-card>
 ```
 
 ```javascript
