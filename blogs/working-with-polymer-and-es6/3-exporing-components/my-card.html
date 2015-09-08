@@ -7,14 +7,25 @@
   <style>
     /* A specialized selector which applies base styles to your component. */
     :host {
-      color: #0000FF;
+      color: #00f;
+    }
+    /* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
+    .condensed {
+      width: 100%;
+      max-height: 50px;
+      text-overflow: ellipsis;
     }
   </style>
   <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->
   <template>
-    <p>
-      Web Components Rock!
-    </p>
+    <!-- Display the provided title -->
+    <h3 id="title">{{title}}</h3>
+    <!-- Display the provided details, and by default set the condensed class. Attached() will determine what to do with it. -->
+    <p id="details" class="condensed"><b>Details:</b> <span>{{details}}</span></p>
+    <!-- If condensed is set on the component, display this button. -->
+    <template is="dom-if" if="{{condensed}}">
+      <button id="readmore">Read More</button>
+    </template>
   </template>
   <!-- Include our ES6 generated script file to define our component. -->
   <script src="my-card.js"></script>
