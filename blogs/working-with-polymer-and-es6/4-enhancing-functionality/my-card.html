@@ -1,0 +1,32 @@
+<!-- First, we must always import Polymers core, so that our component will be definable. -->
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<!-- The dom-module tells Polymer what isolated html, styles, and JS applied to your given component. -->
+<dom-module id="my-card">
+  <!-- Styles here are isolated to the scope of this component alone, to help reduce global style cruft. -->
+  <style>
+    /* A specialized selector which applies base styles to your component. */
+    :host {
+      color: #00f;
+    }
+    /* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
+    .condensed {
+      width: 100%;
+      max-height: 50px;
+      text-overflow: ellipsis;
+    }
+  </style>
+  <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->
+  <template>
+    <!-- Display the provided title -->
+    <h3 id="title">{{title}}</h3>
+    <!-- Display the provided details, and by default set the condensed class. Attached() will determine what to do with it. -->
+    <p id="details" class="condensed"><b>Details:</b> <span>{{details}}</span></p>
+    <!-- If condensed is set on the component, display this button. -->
+    <template is="dom-if" if="{{condensed}}">
+      <button on-tap="displayAllDetails" id="readmore">Read More</button>
+    </template>
+  </template>
+  <!-- Include our ES6 generated script file to define our component. -->
+  <script src="my-card.js"></script>
+</dom-module>

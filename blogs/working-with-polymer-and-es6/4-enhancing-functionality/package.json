@@ -1,0 +1,25 @@
+{
+  "name": "working-with-polymer-and-es6",
+  "version": "1.0.0",
+  "description": "Welcome. This article is aimed to help introduce you to the concepts of Polymer & ES6, how these two technologies  can work together to achieve some awesome things, and lightly touch on some build and workflow tools to assist you in  becoming more proficient.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "./node_modules/.bin/babel my-card.es6.js -o .my-card.js && ./node_modules/.bin/browserify .my-card.js -o my-card.js && rm .my-card.js",
+    "start": "npm run compile && ./node_modules/.bin/browser-sync start --server --files 'index.html'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "string": "^3.3.1",
+    "systemjs": "^0.18.17"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.23",
+    "browser-sync": "^2.8.2",
+    "browserify": "^11.0.1",
+    "simple": "^0.2.0"
+  }
+}

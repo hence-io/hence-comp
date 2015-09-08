@@ -1,7 +1,7 @@
-# Working with Polymer and ES6 - Exploring Components
+# Working with Polymer and ES6 - Enhancing Functionality
 
-In Part 3, we are diving in to our new component to explore the various aspects of Polymer to start crafting the
-foundation of our component.
+In Part 4, we are now ready to start expanding and featurizing our new component to make it a practical component we
+could see ourselves using in a site or web application.
 
 ## Component Bootcamp
 
