@@ -318,18 +318,6 @@ tap (mouse click, mobile tap) that occurs on that element. When the event is tri
 ```displayAllDetails(e)``` method for us.  **e** passed in is the event object sent by Polymer, which has some handy
 component specific attributes to help with more advanced usage.
 
-**Alternative Syntax**
-
-We can forgo the ```listeners``` object on your component and target the method directly, similar to syntax you would
-find in the likes of AngularJS. Some may prefer this syntax over the use of the listeners object. The only draw back
-from this style is not having a clearly defined list of all the events that take place on your component, but cases
-no hindrance.
-
-```html
-<!-- No need for a listern event when explicitly defining an on-tap method -->
-<button on-tap="displayAllDetails" id="readmore">Read More</button>
-```
-
 **Why can't I set a method on a listener?**
 
 Due to some issues in the event propagation of Polymer, firing events has to stick to leveraging strings as the
@@ -338,6 +326,9 @@ targets vs embedding functions. This means a typical code convention will no be 
 ```javascript
 const config = {
   ...
+  /**************************************************************************************
+   * Event Listeners
+   *************************************************************************************/
   listeners: {
    'readmore.tap': (e)=> { // This will epically fail
       if(!this.condensed) { // Remove the condensed class if we're removing the flag
@@ -359,6 +350,18 @@ targeting a key on the listners object which is a string *readmore.tap*, we can'
 ```'readmore.tap'(e) {...}```. However the use of arrow functions comes to the rescue! ```(e)=> {...}``` is the
 equivalent of typing ```function(e) {...}```. It's a subtle shift that helps us save in typing the function keyword
 unnecessarily.
+
+**Alternative Syntax**
+
+We can forgo the ```listeners``` object on your component and target the method directly, similar to syntax you would
+find in the likes of AngularJS. Some may prefer this syntax over the use of the listeners object. The only draw back
+from this style is not having a clearly defined list of all the events that take place on your component, but cases
+no hindrance.
+
+```html
+<!-- No need for a listern event when explicitly defining an on-tap method -->
+<button on-tap="displayAllDetails" id="readmore">Read More</button>
+```
 
 ---
 
