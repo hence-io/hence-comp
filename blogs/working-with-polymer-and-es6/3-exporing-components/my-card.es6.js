@@ -24,7 +24,8 @@ const config = {
     }
   },
   myProps() { // A simple little debugging function
-    // 'this' context is the current polymer instance, allowing you to access your properties on demand.
+    // 'this' context is the current polymer instance, allowing you to access your properties
+    // on demand.
     console.log('MyProps are:', { // spit out
       title: this.title,
       condensed: this.condensed,
@@ -34,9 +35,9 @@ const config = {
   /*********************************************************************************************************************
    * Lifecycle
    ********************************************************************************************************************/
-    created() {
-    // Handle any simple start up or initialization that will not require access to instanced properties, or the DOM
-    // as it hasn't been ready'd yet.
+  created() {
+    // Handle any simple start up or initialization that will not require access to
+    // instanced properties, or the DOM as it hasn't been ready'd yet.
   },
   ready() {
     // `ready` is called after all elements have been configured, but
@@ -47,8 +48,8 @@ const config = {
     // necessary), or kick off any processes the element wants to perform.
   },
   factoryImpl(title, details = '', condensed = true) {
-    // Handle any initializations for components created in code, and work with properties (as this is called after
-    // the ready check.
+    // Handle any initializations for components created in code, and work with properties
+    // as this is called after the ready check.
     this.title = title;
     this.details = details;
     this.condensed = condensed;

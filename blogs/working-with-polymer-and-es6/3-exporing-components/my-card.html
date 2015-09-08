@@ -20,7 +20,10 @@
   <template>
     <!-- Display the provided title -->
     <h3 id="title">{{title}}</h3>
-    <!-- Display the provided details, and by default set the condensed class. Attached() will determine what to do with it. -->
+    <!--
+    Display the provided details, and by default set the condensed class.
+    Attached() will determine what to do with it.
+    -->
     <p id="details" class="condensed"><b>Details:</b> <span>{{details}}</span></p>
     <!-- If condensed is set on the component, display this button. -->
     <template is="dom-if" if="{{condensed}}">
