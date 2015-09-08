@@ -70,7 +70,7 @@ and a sandbox for you to test code in.
 
 ### Native ES6 Support
 
-*Will native ES6 browser support to do away with Transpilers?*
+**Will native ES6 browser support to do away with Transpilers?**
 
 When native support in browsers has standardized, and we can throw away those dusty old ones, the theory is that these
  transpilers will go away. At the time of writing this, the modern browsers are getting quite close to full support.
@@ -81,7 +81,7 @@ concepts sooner, they continue to push the edge of development given how slow la
  Transpilers are a buffer for writing native code today for the future, and once you've had a taste, you will understand
  why having them stick around isn't a bad thing whatsoever!
 
-*Where can I use ES6 native already?*
+**Where can I use ES6 native already?**
 
 For browser support, again review the up to date [ES6 Compatibility Support](http://kangax.github.io/compat-table/es6/).
 For support on the tooling and server side of things, there're a few options you may not yet know about.
@@ -104,7 +104,7 @@ features and strait forward code samples for each.
 topics in ES6, with code samples and comparisons to matching ES5 code.
 - [Learn ES2015](http://learnharmony.org/#) - An interactive guide to learning and testing out the concepts.
 
-*What's this ES2015 I keep seeing? I thought we were talking about ES6 here? O.o*
+**What's this ES2015 I keep seeing? I thought we were talking about ES6 here? O.o**
 
 ES6 was officially agreed upon as a standard as of June 2015. The
 [ECMAScript Language Specification](http://www.ecma-international.org/ecma-262/6.0/) improvements were dubbed

@@ -148,7 +148,7 @@ Now, from your console, you will be able to run it easily with:
 npm run compile
 ```
 
-*What is going on with this compile command?*
+**What is going on with this compile command?**
 
 A couple of things are occurring to give use the working file we need for the browser.
 
@@ -185,7 +185,7 @@ npm start
 You should now see the my-card component displaying with the default label 'Web Components Rock!' in blue if
 everything went successful.
 
-*What is going on with this compile command?*
+**What is going on with this compile command?**
 
 With this command, we're doing two things to get your component displaying in browser for you.
 
@@ -194,7 +194,7 @@ With this command, we're doing two things to get your component displaying in br
 site. It automatically serves the ```index.html``` as the homepage, and launches your browser to the right url so you
  don't have to do anything extra.
 
-*That seems like a lot of work to get things up and running doesn't it? O.o*
+**That seems like a lot of work to get things up and running doesn't it? O.o**
 
 Haven't you ever hear good things come to those who wait? Without understanding the basics of how each part of the
 process works, you'd have a harder time trusting a tool that just does everything for you. And fear not, there're
