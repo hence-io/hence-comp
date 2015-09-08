@@ -33,9 +33,11 @@ A Polymer object is registered by you defining it in your JS file:
 const MyCard = Polymer({...});
 ```
 
-The inclusion of this inside your component allows it to then be placed on the DOM, as with the ```index.html``` or
-generated in code to spawn new components:
+You notice the use of the **const** keyword. This is one of the new ES6 variable declaration types, and it is
+especially useful for when defining things that shouldn't be overridden, such as our Polymer component definition!
 
+By creating a Polymer object this way, it allows your components to be placed on the DOM, as with the ```index.html``` or
+generated in code to spawn new components:
 ```html
 <my-card></my-card>
 ```
@@ -50,9 +52,13 @@ let el2 = document.createElement('my-card');
 document.findById('my-div').appendChild(el2); append it to a div
 ```
 
-Seems easy enough, but this doesn't really given us any control over what is happening when it is created or added to
- the DOM. For that, we need to leverage the hook methods in the [component's lifecycle](#component-lifecycle). But
- first, it's time that we talk about a component's properties so we can add some substance to our component.
+**let** is another new variable keyword, which has essential replaced the use of ```var```, as let provides tighter
+control over what scopes your variables exist in.
+
+So, this seems easy enough? We've got our objects being generated, but this doesn't really given us any control over
+what is happening when it is created or added to the DOM yet. For that, we need to leverage the hook methods in the
+[component's lifecycle](#component-lifecycle). But first, it's time that we talk about a component's properties, so
+we can add some substance to our component.
 
 ### Properties
 
@@ -65,6 +71,9 @@ properties later on!
 
 ```javascript
 const config = {
+  /**************************************************************************************
+   * Initialization
+   *************************************************************************************/
   is, // In ES6, setting a key equal to a matching name variable can be shorten
   properties: {
     title: 'String',
@@ -142,6 +151,9 @@ Let's add these methods to our component with details on what they're trying to 
 ```javascript
 const config = {
   ...
+  /**************************************************************************************
+   * Lifecycle
+   *************************************************************************************/
   created() {
     // Handle any simple start up or initialization that will not require access to instanced properties, or the DOM
     // as it hasn't been ready'd yet.
@@ -261,22 +273,30 @@ can safely target them without ever fear of sibling or other components having t
 
 ### Listeners
 
+Now that we have a button in our template to help control displaying the details, we need a way to control that
+button, as well as track whether the component should be displaying the details condensed or not.
+
+To accomplish this, we need to add some behaviour to our component so it knows what to do when the condensed flag is
+set or toggled, and allow our button to trigger that.
 
 ```javascript
 const config = {
   ...
-  /*********************************************************************************************************************
+  /**************************************************************************************
    * Lifecycle
-   ********************************************************************************************************************/
+   *************************************************************************************/
   attached() {
     this.displayAllDetails();
   },
-  /*********************************************************************************************************************
+  /**************************************************************************************
    * Event Listeners
-   ********************************************************************************************************************/
+   *************************************************************************************/
   listeners: {
    'readmore.tap': 'displayAllDetails'
   },
+  /**************************************************************************************
+   * Component Interaction
+   *************************************************************************************/
   displayAllDetails(e) {
    if(!this.condensed) { // Remove the condensed class if we're removing the flag
      this.$.details.classList.remove('condensed');
@@ -285,5 +305,56 @@ const config = {
   ...
 }
 ```
+
+Updating our component to include these methods, we have a method ```displayAllDetails(e)``` to check whether or not
+the condensed class should be removed from the details element.  Executing this method from the ```attached()``` method
+ensures that when our components are initializing, they will apply this behaviour as needed.
+
+An event listener now is also designated, which is looking for an element with the id ```readmore``` and tracking any
+tap (mouse click, mobile tap) that occurs on that element. When the event is triggered, it should fire of the
+```displayAllDetails(e)``` method for us.  **e** passed in is the event object sent by Polymer, which has some handy
+component specific attributes to help with more advanced usage.
+
+**Alternative Syntax**
+
+We can forgo the ```listeners``` object on your component and target the method directly, similar to syntax you would
+find in the likes of AngularJS. Some may prefer this syntax over the use of the listeners object. The only draw back
+from this style is not having a clearly defined list of all the events that take place on your component, but cases
+no hindrance.
+
+```html
+<!-- No need for a listern event when explicitly defining an on-tap method -->
+<button on-tap="displayAllDetails" id="readmore">Read More</button>
+```
+
+**Why can't I set a method on a listener?**
+
+Due to some issues in the event propagation of Polymer, firing events has to stick to leveraging strings as the
+targets vs embedding functions. This means a typical code convention will no be successful:
+
+```javascript
+const config = {
+  ...
+  listeners: {
+   'readmore.tap': (e)=> { // This will epically fail
+      if(!this.condensed) { // Remove the condensed class if we're removing the flag
+        this.$.details.classList.remove('condensed');
+      }
+   }
+  },
+  ...
+}
+```
+
+In this example, the function will not fire, and from exploring the innards of Polymer, it is clear why they've
+avoided it. Due to their complex chain of method firing, the **this** context in this function will not point to your
+ instanced component, making it near impossible to get any use out of it. The only way to make use of the listeners
+ object is to target your methods by name.
+
+Another variation of the new ES6 method usage is featured in this code sample as well for us. Because we are
+targeting a key on the listners object which is a string *readmore.tap*, we can't do the simple method declaration
+```'readmore.tap'(e) {...}```. However the use of arrow functions comes to the rescue! ```(e)=> {...}``` is the
+equivalent of typing ```function(e) {...}```. It's a subtle shift that helps us save in typing the function keyword
+unnecessarily.
 
 ### Behaviours

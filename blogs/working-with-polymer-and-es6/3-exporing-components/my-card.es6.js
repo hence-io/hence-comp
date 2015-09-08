@@ -34,7 +34,7 @@ const config = {
   /*********************************************************************************************************************
    * Lifecycle
    ********************************************************************************************************************/
-  created() {
+    created() {
     // Handle any simple start up or initialization that will not require access to instanced properties, or the DOM
     // as it hasn't been ready'd yet.
   },
@@ -76,8 +76,11 @@ const config = {
   listeners: {
     'readmore.tap': 'displayAllDetails'
   },
-  displayAllDetails(e) {
-    if(!this.condensed) { // Remove the condensed class if we're removing the flag
+  /*********************************************************************************************************************
+   * Component Interaction
+   ********************************************************************************************************************/
+    displayAllDetails(e) {
+    if (!this.condensed) { // Remove the condensed class if we're removing the flag
       this.$.details.classList.remove('condensed');
     }
   },
