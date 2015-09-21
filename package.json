@@ -1,6 +1,6 @@
 {
   "name": "hence-component-framework",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A core library for the ES6/Polymer web components used in the Hence.io framework",
   "homepage": "https://github.com/hence-io/slush-hence",
   "author": "Sean 'Blitz' Homer <sean.homer@therefore.ca>",
