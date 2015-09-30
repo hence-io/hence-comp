@@ -77,7 +77,10 @@ const config = {
   properties: {
     title: 'String',
     details: 'String',
-    condensed: 'Boolean', // Whether or not we want to see the full details, or partial
+    condensed: { // Whether or not we want to see the full details, or partial
+      type: Boolean,
+      value: true
+    },
     email: {
       type: 'Object',
       value() { // Improved ES6 function definitions
@@ -360,7 +363,7 @@ no hindrance.
 
 ```html
 <!-- No need for a listern event when explicitly defining an on-tap method -->
-<button on-tap="displayAllDetails" id="readmore">Read More</button>
+<button on-tap="readMore" id="readmore">Read More</button>
 ```
 
 ---

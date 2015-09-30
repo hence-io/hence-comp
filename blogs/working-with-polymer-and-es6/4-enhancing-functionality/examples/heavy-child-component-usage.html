@@ -1,0 +1,83 @@
+<dom-module is="list-view">
+  <template>
+    <template is="dom-if" if="{{loaded}}">
+      <template is="dom-repeat" items="{{list}}" as="entry">
+        <list-entry entry={{entry}}></list-entry>
+      </template>
+    </template>
+    <template is="dom-if" if="{{!loaded}}">
+      Your content is loading...
+    </template>
+  </template>
+  <script>Polymer({is:'list-view',properties:{list:Array,loaded:Boolean}});</script>
+</dom-module>
+
+<dom-module is="list-entry">
+  <template>
+    <h3>{{entry.title}}</h3>
+    <template is="dom-if" if="{{entry.details}}">
+      <p><b>Details:</b></p>
+
+      <p>{{entry.details}}</p>
+    </template>
+    <template is="dom-if" if="{{!entry.details}}">
+      Secret sauce.
+    </template>
+    <template is="dom-repeat" items="{{entry.flights}}" as="flight">
+      <flight-card flight="{{flight}}"></flight-card>
+    </template>
+  </template>
+  <script>Polymer({is:'list-entry',properties:{entry:Object}});</script>
+</dom-module>
+
+<dom-module is="flight-card">
+  <tempalte>
+    <div class="title">
+      <span>{{flight.departureCode}}</span>
+      <iron-icon class="flights" icon="device:airplanemode-active"></iron-icon>
+      <span>{{flight.arrivalCode}}</span>
+    </div>
+    <div class="description">
+      <header class="review fullWidth">
+        <div class="price">
+          $<span>{{flight.price}}</span>
+        </div>
+        <div class="duration">
+          Flight duration<br>
+          <b>{{flight.duration}}</b>
+        </div>
+      </header>
+      <div class="clear"></div>
+      <div class="checkIn fullWidth">
+        Check In
+        <paper-fab class="checkInButton" icon="icons:check"></paper-fab>
+      </div>
+      <div class="details">
+        <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
+        <div class="confirmation">
+          <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+        </div>
+      </div>
+      <div class="boarding">
+        <header>
+          <div class="airport">
+            <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
+          </div>
+          <div class="terminal">
+            Terminal
+          </div>
+          <div class="gate">
+            Gate
+          </div>
+        </header>
+        <footer>
+          <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
+          <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
+          <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
+        </footer>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </tempalte>
+  <script>Polymer({is:'flight-card',properties:{flight:Object}});</script>
+</dom-module>

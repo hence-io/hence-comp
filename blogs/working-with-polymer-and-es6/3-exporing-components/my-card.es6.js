@@ -9,11 +9,14 @@ const config = {
    ********************************************************************************************************************/
   is, // In ES6, setting a key equal to a matching name variable can be shorten
   properties: {
-    title: 'String',
-    details: 'String',
-    condensed: 'Boolean', // Whether or not we want to see the full details, or partial
+    title: String,
+    details: String,
+    condensed: { // Whether or not we want to see the full details, or partial
+      type: Boolean,
+      value: true
+    },
     email: {
-      type: 'Object',
+      type: Object,
       value() { // Improved ES6 function definitions
         return { // Returns a unique object for each instance of my-card
           label: 'Email',
@@ -84,6 +87,11 @@ const config = {
     if (!this.condensed) { // Remove the condensed class if we're removing the flag
       this.$.details.classList.remove('condensed');
     }
+  },
+
+
+  readMore(e) {
+    this.displayAllDetails(e)
   },
 
   /*********************************************************************************************************************

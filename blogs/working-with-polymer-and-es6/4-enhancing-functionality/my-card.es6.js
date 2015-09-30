@@ -9,11 +9,14 @@ const config = {
    ********************************************************************************************************************/
   is, // In ES6, setting a key equal to a matching name variable can be shorten
   properties: {
-    title: 'String',
-    details: 'String',
-    condensed: 'Boolean', // Whether or not we want to see the full details, or partial
+    title: String,
+    details: String,
+    condensed: { // Whether or not we want to see the full details, or partial
+      type: Boolean,
+      value: true
+    },
     email: {
-      type: 'Object',
+      type: Object,
       value() { // Improved ES6 function definitions
         return { // Returns a unique object for each instance of my-card
           label: 'Email',
@@ -21,6 +24,10 @@ const config = {
           value: ''
         };
       }
+    },
+    readMoreLabel: {
+      type: String,
+      value: '..Read More..'
     }
   },
   myProps() { // A simple little debugging function
@@ -35,7 +42,7 @@ const config = {
   /*********************************************************************************************************************
    * Lifecycle
    ********************************************************************************************************************/
-  created() {
+    created() {
     // Handle any simple start up or initialization that will not require access to
     // instanced properties, or the DOM as it hasn't been ready'd yet.
   },
@@ -84,6 +91,15 @@ const config = {
     if (!this.condensed) { // Remove the condensed class if we're removing the flag
       this.$.details.classList.remove('condensed');
     }
+  },
+
+  readMore(e) {
+    // Display the details, and will hide the button
+    this.$.collapse.show();
+
+    // Ensure to remove the condensed flag and class on the details
+    this.condensed = false;
+    this.displayAllDetails(e);
   },
 
   /*********************************************************************************************************************

@@ -27,7 +27,7 @@
     <p id="details" class="condensed"><b>Details:</b> <span>{{details}}</span></p>
     <!-- If condensed is set on the component, display this button. -->
     <template is="dom-if" if="{{condensed}}">
-      <button on-tap="displayAllDetails" id="readmore">Read More</button>
+      <button on-tap="readMore" id="readmore">Read More</button>
     </template>
   </template>
   <!-- Include our ES6 generated script file to define our component. -->

@@ -51,15 +51,15 @@ ways to leverage the new content section:
 
 ```html
 <!-- parameter details -->
-<my-card details="Some details..."></my-card>
+<my-card title="My Card Sample" details="Some details..."></my-card>
 
 <!-- raw content, text -->
-<my-card>
+<my-card title="My Card Sample">
   Some details...
 </my-card>
 
 <!-- raw content, html -->
-<my-card>
+<my-card title="My Card Sample">
   <div>
     Details <b>and</b> <i>html</i>!
   </div>
@@ -84,7 +84,7 @@ specifics on what should show up where from the yield.
 Now lets update our component we're previewing to access this new control.
 
 ```html
-<my-card>
+<my-card title="My Card Sample">
   <header>
     Header notice
   </header>
@@ -114,7 +114,7 @@ Now lets try and also put a footer selector in our element too.
 Now lets update our component to include the footer.
 
 ```html
-<my-card>
+<my-card title="My Card Sample">
   <header>
     Header notice
   </header>
@@ -187,7 +187,7 @@ Now lets try and also put a footer selector in our element too.
 And our sample to render our component:
 
 ```html
-<my-card>
+<my-card title="My Card Sample">
   <header>
     Header notice
   </header>
@@ -253,7 +253,7 @@ Now lets go and update our read more button to make it snazy!
   <!-- If condensed is set on the component, display this button. -->
   <template is="dom-if" if="{{condensed}}">
     <!-- lets raise the button to make it stand out more -->
-    <paper-button raised on-tap="displayAllDetails" id="readmore">Read More</paper-button>
+    <paper-button raised on-tap="readMore" id="readmore">Read More</paper-button>
   </template>
   ...
 </template>
@@ -267,7 +267,9 @@ ensure you can get right in an make use of it. While some components get more co
 isn't important to keep in mind actively documenting our component (as the examples have been), so we can provide
 others who will end up consuming our component to know how to get in an use it just as easiliy.
 
-So what's next? Well, we do have a read more button waiting to be useful, so why don't we look at implementing a
+**So what's next?**
+
+Well, we do have a read more button waiting to be useful, so why don't we look at implementing a
 collapsible control around the details and tie in a toggle to the button. Sounds fun! Once again Polymer has a handy
 basic component which will suit our needs to achieve this functionality:
 [iron-collapse](https://elements.polymer-project.org/elements/iron-collapse)
@@ -302,6 +304,27 @@ Now lets go and update our read more button to make it snazy!
 </template>
 ```
 
+Now that we have a collapse control in place on the details, it's time to update our readMore on-tap function tied
+into our button.
+
+```js
+config = {
+  ...
+  readMore(e) {
+    // Display the details, and will hide the button
+    this.$.collapse.show();
+
+    // Ensure to remove the condensed flag and class on the details
+    this.condensed = false;
+    this.displayAllDetails(e);
+  },
+  ...
+};
+```
+
+With this in place, now lets take a look at our component again. The details will be hidden initially, and display
+the button, and once pressed, the details will scroll into view while hiding the button.
+
 **When are enough components enough already?**
 
 Components within components within components... It seems like this could quickly and easily turn into a rabbits hole,
@@ -310,6 +333,268 @@ and you stop making progress to only build components for the sake of building t
 tests.
 
 This goes back to needing to be responsible with what you're doing. The key thing comes down to, **drum roll*, PLANING!
-You've probably heard it a hundred times, and likely a hundred more if it hasn't sunk in yet
+You've probably heard it a hundred times, and likely a hundred more if it hasn't sunk in yet. ;)
+
+There is a point where having to many components inside each other becomes a disadvantage when you're trying to cram
+them into a single component. The core concept of compartmentalization requires use to think twice before doing this.
+ Lets look at an example to highlight when things could go astray.
+
+Below is an advanced sample, but we will just be looking at it to draw a conclusion on how to avoid over doing child
+components.
+
+```html
+<dom-module is="list-view">
+  <template>
+    <template is="dom-if" if="{{loaded}}">
+      <template is="dom-repeat" items="{{list}}" as="entry">
+        <h3>{{entry.title}}</h3>
+        <template is="dom-if" if="{{entry.details}}">
+          <p><b>Details:</b></p>
+
+          <p>{{entry.details}}</p>
+        </template>
+        <template is="dom-if" if="{{!entry.details}}">
+          Secret sauce.
+        </template>
+        <template is="dom-repeat" items="{{entry.flights}}" as="flight">
+          <div class="flight-card">
+            <div class="title">
+              <span>{{flight.departureCode}}</span>
+              <iron-icon class="flights" icon="device:airplanemode-active"></iron-icon>
+              <span>{{flight.arrivalCode}}</span>
+            </div>
+            <div class="description">
+              <header class="review fullWidth">
+                <div class="price">
+                  $<span>{{flight.price}}</span>
+                </div>
+                <div class="duration">
+                  Flight duration<br>
+                  <b>{{flight.duration}}</b>
+                </div>
+              </header>
+              <div class="clear"></div>
+              <div class="checkIn fullWidth">
+                Check In
+                <paper-fab class="checkInButton" icon="icons:check"></paper-fab>
+              </div>
+              <div class="details">
+                <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
+                <div class="confirmation">
+                  <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+                </div>
+              </div>
+              <div class="boarding">
+                <header>
+                  <div class="airport">
+                    <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
+                  </div>
+                  <div class="terminal">
+                    Terminal
+                  </div>
+                  <div class="gate">
+                    Gate
+                  </div>
+                </header>
+                <footer>
+                  <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
+                  <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
+                  <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
+                </footer>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </template>
+    </template>
+    <template is="dom-if" if="{{!loaded}}">
+      Your content is loading...
+    </template>
+  </template>
+  <script>Polymer({is:'list-view',properties:{list:Array,loaded:Boolean}});</script>
+</dom-module>
+```
+
+Here we have a list component, which will display some entries. Each entry has some logic on what to display, and
+then has a list of it's on for flights. Each flight then has quite a complex display of content, which in turn has more
+child components...
+
+So how do we turn this around to make is more effective and esacpe the rabbits hole? Encapsulation works best when
+starting from the inside out, and the ```<div class="flight-card">``` is looking pretty obvious for us to pull out
+into a component of it's own.  Breaking that out into it's own component could look something like this:
+
+```html
+<dom-module is="list-view">
+  <template>
+    <template is="dom-if" if="{{loaded}}">
+      <template is="dom-repeat" items="{{list}}" as="entry">
+        <h3>{{entry.title}}</h3>
+        <template is="dom-if" if="{{entry.details}}">
+          <p><b>Details:</b></p>
+
+          <p>{{entry.details}}</p>
+        </template>
+        <template is="dom-if" if="{{!entry.details}}">
+          Secret sauce.
+        </template>
+        <template is="dom-repeat" items="{{entry.flights}}" as="flight">
+          <flight-card flight="{{flight}}"></flight-card> <!-- Now we're targeting a dedicated flight-card compoent -->
+        </template>
+      </template>
+    </template>
+    <template is="dom-if" if="{{!loaded}}">
+      Your content is loading...
+    </template>
+  </template>
+  <script>Polymer({is:'list-view',properties:{list:Array,loaded:Boolean}});</script>
+</dom-module>
+
+<dom-module is="flight-card">
+  <tempalte>
+    <div class="title">
+      <span>{{flight.departureCode}}</span>
+      <iron-icon class="flights" icon="device:airplanemode-active"></iron-icon>
+      <span>{{flight.arrivalCode}}</span>
+    </div>
+    <div class="description">
+      <header class="review fullWidth">
+        <div class="price">
+          $<span>{{flight.price}}</span>
+        </div>
+        <div class="duration">
+          Flight duration<br>
+          <b>{{flight.duration}}</b>
+        </div>
+      </header>
+      <div class="clear"></div>
+      <div class="checkIn fullWidth">
+        Check In
+        <paper-fab class="checkInButton" icon="icons:check"></paper-fab>
+      </div>
+      <div class="details">
+        <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
+        <div class="confirmation">
+          <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+        </div>
+      </div>
+      <div class="boarding">
+        <header>
+          <div class="airport">
+            <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
+          </div>
+          <div class="terminal">
+            Terminal
+          </div>
+          <div class="gate">
+            Gate
+          </div>
+        </header>
+        <footer>
+          <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
+          <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
+          <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
+        </footer>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </tempalte>
+  <script>Polymer({is:'flight-card',properties:{flight:Object}});</script>
+</dom-module>
+```
+
+Taking it one step further, whenever possible it's best to encapsulate anything complex inside a dom-repeater, so
+lets take out the entry display and warp that into it's own component too!
+
+```html
+<dom-module is="list-view">
+  <template>
+    <template is="dom-if" if="{{loaded}}">
+      <template is="dom-repeat" items="{{list}}" as="entry">
+        <list-entry entry={{entry}}></list-entry>
+      </template>
+    </template>
+    <template is="dom-if" if="{{!loaded}}">
+      Your content is loading...
+    </template>
+  </template>
+  <script>Polymer({is:'list-view',properties:{list:Array,loaded:Boolean}});</script>
+</dom-module>
+
+<dom-module is="list-entry">
+  <template>
+    <h3>{{entry.title}}</h3>
+    <template is="dom-if" if="{{entry.details}}">
+      <p><b>Details:</b></p>
+
+      <p>{{entry.details}}</p>
+    </template>
+    <template is="dom-if" if="{{!entry.details}}">
+      Secret sauce.
+    </template>
+    <template is="dom-repeat" items="{{entry.flights}}" as="flight">
+      <flight-card flight="{{flight}}"></flight-card>
+    </template>
+  </template>
+  <script>Polymer({is:'list-entry',properties:{entry:Object}});</script>
+</dom-module>
+
+<dom-module is="flight-card">
+  <tempalte>
+    <div class="title">
+      <span>{{flight.departureCode}}</span>
+      <iron-icon class="flights" icon="device:airplanemode-active"></iron-icon>
+      <span>{{flight.arrivalCode}}</span>
+    </div>
+    <div class="description">
+      <header class="review fullWidth">
+        <div class="price">
+          $<span>{{flight.price}}</span>
+        </div>
+        <div class="duration">
+          Flight duration<br>
+          <b>{{flight.duration}}</b>
+        </div>
+      </header>
+      <div class="clear"></div>
+      <div class="checkIn fullWidth">
+        Check In
+        <paper-fab class="checkInButton" icon="icons:check"></paper-fab>
+      </div>
+      <div class="details">
+        <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
+        <div class="confirmation">
+          <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+        </div>
+      </div>
+      <div class="boarding">
+        <header>
+          <div class="airport">
+            <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
+          </div>
+          <div class="terminal">
+            Terminal
+          </div>
+          <div class="gate">
+            Gate
+          </div>
+        </header>
+        <footer>
+          <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
+          <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
+          <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
+        </footer>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </tempalte>
+  <script>Polymer({is:'flight-card',properties:{flight:Object}});</script>
+</dom-module>
+```
+
+Keeping concerns isolated to their own component helps ensure your efforts don't go to waste! The more you get into
+the habit of keeping things small, the more uses you might find for components you're encapsulating, and help you
+stay DRY. When this kind of consideration becomes second nature to you, you'll be zipping through your component
+architecting in no time.
 
 ### Styling and Overrides

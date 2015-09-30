@@ -13,11 +13,14 @@ var config = {
    ********************************************************************************************************************/
   is: is, // In ES6, setting a key equal to a matching name variable can be shorten
   properties: {
-    title: 'String',
-    details: 'String',
-    condensed: 'Boolean', // Whether or not we want to see the full details, or partial
+    title: String,
+    details: String,
+    condensed: { // Whether or not we want to see the full details, or partial
+      type: Boolean,
+      value: true
+    },
     email: {
-      type: 'Object',
+      type: Object,
       value: function value() {
         // Improved ES6 function definitions
         return { // Returns a unique object for each instance of my-card
@@ -26,6 +29,10 @@ var config = {
           value: ''
         };
       }
+    },
+    readMoreLabel: {
+      type: String,
+      value: '..Read More..'
     }
   },
   myProps: function myProps() {
@@ -94,6 +101,15 @@ var config = {
       // Remove the condensed class if we're removing the flag
       this.$.details.classList.remove('condensed');
     }
+  },
+
+  readMore: function readMore(e) {
+    // Display the details, and will hide the button
+    this.$.collapse.show();
+
+    // Ensure to remove the condensed flag and class on the details
+    this.condensed = false;
+    this.displayAllDetails(e);
   },
 
   /*********************************************************************************************************************
