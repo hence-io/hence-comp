@@ -39,6 +39,11 @@
       font-style: normal;
     }
 
+    /* Clear out any bold */
+    #details ::content .details * {
+      font-weight: normal !important;
+    }
+
     /* We can still style child components as we would expecte */
     paper-button {
       margin-bottom: 1em;

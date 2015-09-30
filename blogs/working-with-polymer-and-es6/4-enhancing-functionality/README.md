@@ -609,3 +609,25 @@ wanted to isolate styles on html passed in through the content tag, Polymer's go
 ```::content``` selector. This special one lets us dive into and access things inside any of our content tags used
 throughout our component, giving use very exact and precise control over how we want it display.
 
+An example of how this helps is with the following implementation. Lets add another style to manage the details
+content and help streamline potentially unwanted bold styling.
+
+```css
+/* Clear out any bold */
+#details ::content .details * {
+  font-weight: normal !important;
+}
+```
+
+Now any attempt to use both within the component will ensure the content passed in will not be bolded:
+
+```html
+<my-card title="My Card Sample">
+  <div class="details">
+    Some details... <b>to be unbolded inside</b>, <span style="font-weight: bold">and I'm formally bold too...</span>
+  </div>
+</my-card>
+```
+
+Running your sample to test, you will notice the label 'Details:' has been left untouched and is still bold as
+desired, keeping this styling limited to anything within the provided content selector.
