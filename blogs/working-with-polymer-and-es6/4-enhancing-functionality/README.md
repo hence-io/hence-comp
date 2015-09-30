@@ -214,6 +214,8 @@ power. Keeping things DRY is a pillar of building reusable components, going bac
 as a whole. The more thought you put into the varied ways even a simple component could be leveraged that would benefit
 others, you'll be saving time down the road in extending its functionality later on.
 
+---
+
 ### Child Components
 
 We've explored some ways to provide content to our components using the content tag. Now, we will start to explore
@@ -591,5 +593,7 @@ Keeping concerns isolated to their own component helps ensure your efforts don't
 the habit of keeping things small, the more uses you might find for components you're encapsulating, and help you
 stay DRY. When this kind of consideration becomes second nature to you, you'll be zipping through your component
 architecting in no time.
+
+---
 
 ### Styling and Overrides
