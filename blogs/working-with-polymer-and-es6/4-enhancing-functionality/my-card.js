@@ -29,10 +29,6 @@ var config = {
           value: ''
         };
       }
-    },
-    readMoreLabel: {
-      type: String,
-      value: '..Read More..'
     }
   },
   myProps: function myProps() {

@@ -9,7 +9,11 @@
   <style>
     /* A specialized selector which applies base styles to your component. */
     :host {
+      border: 1px solid #eee;
       color: #00f;
+      display: inline-block;
+      padding: 1em;
+      margin: 1em;
     }
 
     /* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
@@ -17,6 +21,27 @@
       width: 100%;
       max-height: 50px;
       text-overflow: ellipsis;
+    }
+
+    #title {
+      border-bottom: 1px solid #eee;
+      font-size: 2em;
+      line-height: 1;
+    }
+
+    #details {
+      font-style: italic;
+      padding: 0.5em 0;
+    }
+
+    /* Custom content passed through may have it's own styling, negate the italics here */
+    #details ::content .details {
+      font-style: normal;
+    }
+
+    /* We can still style child components as we would expecte */
+    paper-button {
+      margin-bottom: 1em;
     }
   </style>
   <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->

@@ -545,3 +545,67 @@ architecting in no time.
 ---
 
 ### Styling and Overrides
+
+Now that're we getting to flesh out how the component displays content and functions, it's time we go back to address
+the style and layout of our component. A big thing to get your head wrapped around with styles in web components is
+that they are all isolated and cannot bleed out into your global style sheet! This means the the ```#title``` in our
+component will never have or affect the styles of a ```#title``` in a different component, each one is in charge of
+it's own styling.
+
+If you haven't already reviewed [Polymers Styling Guide](https://www.polymer-project.org/1.0/docs/devguide/styling.html)
+, you should take a glimpse at it before continuing.
+
+Lets start adding some styles and see how they work inside our component.
+
+```css
+/* A specialized selector which applies base styles to your component. */
+:host {
+  border: 1px solid #eee;
+  color: #00f;
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+}
+
+/* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
+.condensed {
+  width: 100%;
+  max-height: 50px;
+  text-overflow: ellipsis;
+}
+
+#title {
+  border-bottom: 1px solid #eee;
+  font-size: 2em;
+  line-height: 1;
+}
+
+#details {
+  font-style: italic;
+  padding: 0.5em 0;
+}
+
+/* Custom content passed through may have it's own styling, negate the italics here */
+#details ::content .details {
+  font-style: normal;
+}
+
+/* We can still style child components as we would expecte */
+paper-button {
+  margin-bottom: 1em;
+}
+```
+
+The ```:host``` tag is the root style for your component. If we didn't have isolated CSS, we've be typing ```my-card { ...```
+but this is already managed by the host tag for us.  Any styles we apply to this tag will handle the overall wrapper
+that is applied to our components when rendered on page.
+
+Moving down to the ```#details``` styles, we see that some base styles are being applied to this selector, which is a
+ P tag, setting the text to italic. The style after that is something entirely new however. ```#details ::content
+ .details```. So what is going on here?
+
+We updated our component to use the ```<content select=".details"></content>``` inside the p#details, and if we
+wanted to isolate styles on html passed in through the content tag, Polymer's got you covered with the
+```::content``` selector. This special one lets us dive into and access things inside any of our content tags used
+throughout our component, giving use very exact and precise control over how we want it display.
+
