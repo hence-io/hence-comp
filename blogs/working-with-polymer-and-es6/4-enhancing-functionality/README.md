@@ -381,25 +381,6 @@ components.
                   <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
                 </div>
               </div>
-              <div class="boarding">
-                <header>
-                  <div class="airport">
-                    <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
-                  </div>
-                  <div class="terminal">
-                    Terminal
-                  </div>
-                  <div class="gate">
-                    Gate
-                  </div>
-                </header>
-                <footer>
-                  <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
-                  <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
-                  <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
-                </footer>
-                <div class="clear"></div>
-              </div>
             </div>
           </div>
         </template>
@@ -475,25 +456,6 @@ into a component of it's own.  Breaking that out into it's own component could l
           <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
         </div>
       </div>
-      <div class="boarding">
-        <header>
-          <div class="airport">
-            <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
-          </div>
-          <div class="terminal">
-            Terminal
-          </div>
-          <div class="gate">
-            Gate
-          </div>
-        </header>
-        <footer>
-          <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
-          <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
-          <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
-        </footer>
-        <div class="clear"></div>
-      </div>
     </div>
   </tempalte>
   <script>Polymer({is:'flight-card',properties:{flight:Object}});</script>
@@ -563,25 +525,6 @@ lets take out the entry display and warp that into it's own component too!
         <div class="confirmation">
           <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
         </div>
-      </div>
-      <div class="boarding">
-        <header>
-          <div class="airport">
-            <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
-          </div>
-          <div class="terminal">
-            Terminal
-          </div>
-          <div class="gate">
-            Gate
-          </div>
-        </header>
-        <footer>
-          <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
-          <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
-          <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
-        </footer>
-        <div class="clear"></div>
       </div>
     </div>
   </tempalte>

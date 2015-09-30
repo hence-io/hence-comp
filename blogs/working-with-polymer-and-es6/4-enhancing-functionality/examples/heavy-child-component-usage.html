@@ -58,25 +58,6 @@
           <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
         </div>
       </div>
-      <div class="boarding">
-        <header>
-          <div class="airport">
-            <span>{{flight.boardingCity}}</span>, <span>{{flight.departureCode}}</span>
-          </div>
-          <div class="terminal">
-            Terminal
-          </div>
-          <div class="gate">
-            Gate
-          </div>
-        </header>
-        <footer>
-          <hence-html class="airport" content="{{flight.boardingTime}}"></hence-html>
-          <hence-html class="terminal" content="{{flight.boardingTerminal}}"></hence-html>
-          <hence-html class="gate" content="{{flight.boardingGate}}"></hence-html>
-        </footer>
-        <div class="clear"></div>
-      </div>
     </div>
   </tempalte>
   <script>Polymer({is:'flight-card',properties:{flight:Object}});</script>
