@@ -165,8 +165,6 @@ behaviour.
 
 Let's just finish updating our sample to follow the 2nd method, and target the details content tag:
 
-Now lets try and also put a footer selector in our element too.
-
 ```html
 <template>
   ...
@@ -180,7 +178,7 @@ Now lets try and also put a footer selector in our element too.
 </template>
 ```
 
-And our sample to render our component:
+And don't forget to update our sample to render our component with the details class:
 
 ```html
 <my-card title="My Card Sample">
