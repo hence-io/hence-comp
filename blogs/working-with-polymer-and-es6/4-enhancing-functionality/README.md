@@ -417,7 +417,8 @@ into a component of it's own.  Breaking that out into it's own component could l
           Secret sauce.
         </template>
         <template is="dom-repeat" items="{{entry.flights}}" as="flight">
-          <flight-card flight="{{flight}}"></flight-card> <!-- Now we're targeting a dedicated flight-card compoent -->
+          <!-- Now we're targeting a dedicated flight-card compoent -->
+          <flight-card flight="{{flight}}"></flight-card>
         </template>
       </template>
     </template>
@@ -470,6 +471,7 @@ lets take out the entry display and warp that into it's own component too!
   <template>
     <template is="dom-if" if="{{loaded}}">
       <template is="dom-repeat" items="{{list}}" as="entry">
+        <!-- Now we're targeting a dedicated list-entry compoent -->
         <list-entry entry={{entry}}></list-entry>
       </template>
     </template>
