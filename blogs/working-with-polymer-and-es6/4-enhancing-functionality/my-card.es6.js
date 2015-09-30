@@ -24,10 +24,6 @@ const config = {
           value: ''
         };
       }
-    },
-    readMoreLabel: {
-      type: String,
-      value: '..Read More..'
     }
   },
   myProps() { // A simple little debugging function
