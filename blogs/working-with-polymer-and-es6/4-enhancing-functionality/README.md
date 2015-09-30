@@ -89,9 +89,6 @@ Now lets update our component we're previewing to access this new control.
     Header notice
   </header>
   Some details...
-  <footer>
-    Footer notice
-  </footer>
 </my-card>
 ```
 
@@ -99,7 +96,7 @@ Run you component and watch what happens! The content didn't all get displayed a
 shows up in the header. Anything now targeted by a content tag in your component will flow through to the nonspecific
 ```<content></content>```.
 
-**Where ```content``` starts to fail... and how to avoid issues!***
+**Where ```content``` starts to fail... and how to avoid issues!**
 
 Now lets try and also put a footer selector in our element too.
 
@@ -138,7 +135,7 @@ select tags to put targeted content wherever you want, but once Polymer sees tha
 But, wait a minute... what's the point of using this tag at all then? Don't fret! This doesn't make the feature less
 useful, but rather requires you to be mindful in how you plan on leveraging it.
 
-Some best practice around using the content tag are:
+#### The Golden Rules of ```<content>```
 
 1. On simple components, only need the nonspecific content tag.
 
@@ -200,7 +197,8 @@ And our sample to render our component:
 </my-card>
 ```
 
-**Versatility**
+#### Versatility
+
 This shows you just how versatile the content yield can be, allowing you to expose specific areas
 of your component to render content as you desire right along side your properties as well.
 
