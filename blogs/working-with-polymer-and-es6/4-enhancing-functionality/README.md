@@ -378,7 +378,8 @@ components.
               <div class="details">
                 <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
                 <div class="confirmation">
-                  <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+                  <span>{{flight.confirmationDate}}</span>,
+                  Confirmation #<span>{{flight.confirmationNumber}}</span>
                 </div>
               </div>
             </div>
@@ -454,7 +455,8 @@ into a component of it's own.  Breaking that out into it's own component could l
       <div class="details">
         <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
         <div class="confirmation">
-          <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+          <span>{{flight.confirmationDate}}</span>,
+          Confirmation #<span>{{flight.confirmationNumber}}</span>
         </div>
       </div>
     </div>
@@ -525,7 +527,8 @@ lets take out the entry display and warp that into it's own component too!
       <div class="details">
         <hence-html class="flightNumber" content="{{flight.flightNumber}}"></hence-html>
         <div class="confirmation">
-          <span>{{flight.confirmationDate}}</span>, Confirmation #<span>{{flight.confirmationNumber}}</span>
+          <span>{{flight.confirmationDate}}</span>,
+          Confirmation #<span>{{flight.confirmationNumber}}</span>
         </div>
       </div>
     </div>
