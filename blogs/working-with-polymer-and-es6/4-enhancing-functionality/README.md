@@ -138,32 +138,30 @@ useful, but rather requires you to be mindful in how you plan on leveraging it.
 #### The Golden Rules of ```<content>```
 
 1. On simple components only needing the nonspecific content tag, use it!
-
-```html
-<template>
-  <div class="details">
-    My html:
-    <content></content>
-  </div>
-</template>
-```
+  ```html
+  <template>
+    <div class="details">
+      My html:
+      <content></content>
+    </div>
+  </template>
+  ```
 
 2. On more complex components, add select attributes to every single use of the content tag to ensure that no html
 shows up in unexpected ways on your component. **Never use the nonspecific tag in this case!** This will mean html
 padded not matching a target will get ignored, but you can be confident it won't lead your component astray and
 cause abnormal
 behaviour.
-
-```html
-<template>
-  <content select="header"></content>
-  <div class="details">
-    My html:
-    <content select=".details"></content>
-  </div>
-  <content select="footer"></content>
-</template>
-```
+  ```html
+  <template>
+    <content select="header"></content>
+    <div class="details">
+      My html:
+      <content select=".details"></content>
+    </div>
+    <content select="footer"></content>
+  </template>
+  ```
 
 Let's just finish updating our sample to follow the 2nd method, and target the details content tag:
 
