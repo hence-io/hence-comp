@@ -94,7 +94,7 @@ Now lets update our component we're previewing to access this new control.
 
 Run you component and watch what happens! The content didn't all get displayed as details, and the new content we added
 shows up in the header. Anything now targeted by a content tag in your component will flow through to the nonspecific
-```<content></content>```.
+content.
 
 **Where ```content``` starts to fail... and how to avoid issues!**
 
