@@ -737,8 +737,9 @@ every element on your page might be reusable, the flood gate opens and the sky i
 ### Componentization Pro Tips
 
 - Components are everywhere, and you have the power to chose how specific and granular they become.
-- Considering the flexibility you will need, in the functionality, layout, and styling gives you the chance to create
+- Considering the flexibility you will need in the functionality, layout, and styling gives you the chance to create
  open versatile components that do one thing well.
-- If a component is getting to large, it's likely you can split it out into it's own concerns.
-- Thinking clearly on what aspects of the component you want exposed, from variables accessible outside of the
-component, to style variables open to be overridden.
+- If a component is getting to large, it's likely you can split it out into it's own child component(s) to
+handle its various concerns.
+- Think clearly on what aspects of the component you want exposed, from variables and functions accessible outside,
+to style variables open to be overridden.
