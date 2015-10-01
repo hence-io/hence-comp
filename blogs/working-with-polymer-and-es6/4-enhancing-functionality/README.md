@@ -322,6 +322,8 @@ config = {
 With this in place, now lets take a look at our component again. The details will be hidden initially, and display
 the button, and once pressed, the details will scroll into view while hiding the button.
 
+#### Isolating Child Components
+
 **When are enough components enough already?**
 
 Components within components within components... It seems like this could quickly and easily turn into a rabbits hole,
@@ -689,39 +691,13 @@ Lets take a look at how we can start to leverage these:
   line-height: 1;
 }
 
-#details {
-  font-style: italic;
-  padding: 0.5em 0;
-}
-
-#details b, #details .bold {
-  color: #f00;
-  font-weight: 700;
-}
-
-/* Custom content passed through may have it's own styling, negate the italics here */
-#details ::content .details {
-  font-style: normal;
-  font-weight: normal;
-}
+...
 
 /* While we've defined some defaults, allow the users to completely override this one section. */
 #details, #details ::content .details {
   @apply(--my-card-details);
 }
 
-/* We can still style child components as we would expect */
-paper-button {
-  margin-bottom: 1em;
-}
-
-
-/* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
-.condensed {
-  width: 100%;
-  max-height: 50px;
-  text-overflow: ellipsis;
-}
 ```
 
 Run your component again, and as expected, nothing has changed. While we added some new variables to manage how our
