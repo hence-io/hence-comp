@@ -331,8 +331,8 @@ spiralling you all the way to Wonderland. Well, not really, but the concept of w
 and you stop making progress to only build components for the sake of building them, a similarity to writing to many
 tests.
 
-This goes back to needing to be responsible with what you're doing. The key thing comes down to, **drum roll*, PLANING!
-You've probably heard it a hundred times, and likely a hundred more if it hasn't sunk in yet. ;)
+This goes back to needing to be responsible with what you're doing. The key thing comes down to, *drum roll*,
+**PLANING!** You've probably heard it a hundred times, and likely a hundred more if it hasn't sunk in yet. ;)
 
 There is a point where having to many components inside each other becomes a disadvantage when you're trying to cram
 them into a single component. The core concept of compartmentalization requires use to think twice before doing this.
