@@ -18,7 +18,7 @@ In this section we will be looking into the following advanced aspects:
 
 - [Embedded Content](#embedded-content)
 - [Child Components](#child-components)
-- [Styling and CSS Variables](#stylying-and-css-variables)
+- [Styling and CSS Variables](#styling-and-css-variables)
 
 ### Embedded Content
 
@@ -539,10 +539,10 @@ lets take out the entry display and warp that into it's own component too!
 </dom-module>
 ```
 
-Keeping concerns isolated to their own component helps ensure your efforts don't go to waste! The more you get into
-the habit of keeping things small, the more uses you might find for components you're encapsulating, and help you
-stay DRY. When this kind of consideration becomes second nature to you, you'll be zipping through your component
-architecting in no time.
+Keeping concerns isolated to their own component helps ensure your efforts don't go to waste! The more
+you get into the habit of keeping things small, the more uses you might find for components you're encapsulating, and
+help you stay DRY. When this kind of consideration becomes second nature to you, you'll be zipping through your
+component architecting in no time.
 
 ---
 
