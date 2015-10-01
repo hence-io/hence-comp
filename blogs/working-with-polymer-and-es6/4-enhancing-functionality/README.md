@@ -18,7 +18,7 @@ In this section we will be looking into the following advanced aspects:
 
 - [Embedded Content](#embedded-content)
 - [Child Components](#child-components)
-- [Styling and Overrides](#stylying-and-overrides)
+- [Styling and CSS Variables](#stylying-and-css-variables)
 
 ### Embedded Content
 
@@ -544,7 +544,7 @@ architecting in no time.
 
 ---
 
-### Styling and Overrides
+### Styling and CSS Variables
 
 Now that're we getting to flesh out how the component displays content and functions, it's time we go back to address
 the style and layout of our component. A big thing to get your head wrapped around with styles in web components is
@@ -567,13 +567,6 @@ Lets start adding some styles and see how they work inside our component.
   margin: 1em;
 }
 
-/* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
-.condensed {
-  width: 100%;
-  max-height: 50px;
-  text-overflow: ellipsis;
-}
-
 #title {
   border-bottom: 1px solid #eee;
   font-size: 2em;
@@ -585,49 +578,191 @@ Lets start adding some styles and see how they work inside our component.
   padding: 0.5em 0;
 }
 
+#details b, #details .bold {
+  color: #f00;
+  font-weight: 700;
+}
+
 /* Custom content passed through may have it's own styling, negate the italics here */
 #details ::content .details {
   font-style: normal;
+  font-weight: normal;
 }
 
-/* We can still style child components as we would expecte */
+/* We can still style child components as we would expect */
 paper-button {
   margin-bottom: 1em;
 }
-```
 
-The ```:host``` tag is the root style for your component. If we didn't have isolated CSS, we've be typing ```my-card { ...```
-but this is already managed by the host tag for us.  Any styles we apply to this tag will handle the overall wrapper
-that is applied to our components when rendered on page.
-
-Moving down to the ```#details``` styles, we see that some base styles are being applied to this selector, which is a
- P tag, setting the text to italic. The style after that is something entirely new however. ```#details ::content
- .details```. So what is going on here?
-
-We updated our component to use the ```<content select=".details"></content>``` inside the p#details, and if we
-wanted to isolate styles on html passed in through the content tag, Polymer's got you covered with the
-```::content``` selector. This special one lets us dive into and access things inside any of our content tags used
-throughout our component, giving use very exact and precise control over how we want it display.
-
-An example of how this helps is with the following implementation. Lets add another style to manage the details
-content and help streamline potentially unwanted bold styling.
-
-```css
-/* Clear out any bold */
-#details ::content .details * {
-  font-weight: normal !important;
+/* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
+.condensed {
+  width: 100%;
+  max-height: 50px;
+  text-overflow: ellipsis;
 }
 ```
 
-Now any attempt to use both within the component will ensure the content passed in will not be bolded:
+As well, let us update our sample in the ```index.html``` to show case how the styling is being effected.
 
 ```html
 <my-card title="My Card Sample">
   <div class="details">
-    Some details... <b>to be unbolded inside</b>, <span style="font-weight: bold">and I'm formally bold too...</span>
+    Some details...<br>
+    <b>To be boldly go</b><br>
+    <span class="bold">Can I get a bold too?</span><br>
+    <span style="font-weight: bold">I'm formally bold...</span>
   </div>
 </my-card>
 ```
 
-Running your sample to test, you will notice the label 'Details:' has been left untouched and is still bold as
-desired, keeping this styling limited to anything within the provided content selector.
+Fire up your component, click the read more button, and lets review what's taking place!
+
+1. To start off, the ```:host``` tag is the root style for your component. If we didn't have isolated CSS, we've be
+typing ```my-card { ...``` but this is already managed by the host tag for us.  Any styles we apply to this tag will
+handle the overall wrapper that is applied to our components when rendered on page.
+
+2. Moving down to the ```#details``` styles, we see that some base styles are being applied to this selector, which is a
+ P tag, setting the text to italic. The style after that is something entirely new however. ```#details ::content
+ .details```.
+
+    We updated our component to use the ```<content select=".details"></content>``` inside the ```p#details```, and if we
+    wanted to isolate styles on html passed in through the content tag, Polymer's got you covered with the
+    ```::content``` selector. This special one lets us dive into and access things inside any of our content tags used
+    throughout our component, giving use very exact and precise control over how we want it display.  In this case, we're
+    telling our component any raw content passed in, we'll negate the italics effect on with
+    ```#details ::content .details``` setting our font-style to normal.
+
+3. Something you will notice is with the styling being applied to the ```#details b, #details .bold``` selector setting
+   the colour red. This is occurring inside ```p#details```` seen on the 'Details:' label, however the b tag within the
+   raw content we've added does not come out red. This highlights a key difference in how the embedded content gets
+   styled from the outer container.
+
+     Anything that you apply to the main contain ```#details``` will be applied to the elements inside your content
+     yield, yet any tag specific style you do to selectors inside as with ```#details b``` will never take effect
+     inside, nor does the ```#details .bold``` apply any styling to the ```span.bold``` inside our content tag.
+
+     As well, with the ```#details ::content .details``` selector attempting to set the font-weight to normal, is
+     overridden by the b tag, and the span which is explicitly styled as bold, which is how we expect the styles
+     should work.
+
+#### CSS Variables
+
+Styles defined within our component are isolated, and since they won't affect other elements on your page, neither
+will you be able to just override any of it's styles at will.  For the first time, you have direct control on exactly
+ what styles your want to expose for others to override and customize when leveraging these components. Let that
+ truly sink in for a second... not only can you design your component to have a solid and consistent design and
+ layout, you can define what makes sense to be overridden.
+
+We've all been there before. We craft some crazy cool element, have it working well, and then someone comes along
+and starts 'improving it' to the point where it no longer resembles the elegant sculpture you worked on. If you had
+the power to give them only what they needed, good by headache and regressions!
+
+So how do we tap into this wonderful feature? Instead of Polymer working to create this feature from scratch, they've
+taken a step forward in leveraging the variable & mixin updates poses to the css3/4 specification in hopes this will
+become another native aspect of your web components as time goes on.
+
+Lets take a look at how we can start to leverage these:
+
+```css
+/* A specialized selector which applies base styles to your component. */
+:host {
+  /* Variables -- Specify our components custom variables to expose, while providing our defaults */
+  --my-card-border-color: #eee;
+  --my-card-color: #00f;
+  --my-card-margin: 1em;
+
+  /* Base Styles */
+  /* Keep the border size and style fixed, but flexible colouring */
+  border: 1px solid var(--my-card-border-color);
+  /* Open up the copy colour */
+  color: var(--my-card-color);
+  display: inline-block;
+  padding: 1em;
+  /* While we want a default, we shouldn't restrict it to manipulation */
+  margin: var(--my-card-margin);
+}
+
+#title {
+  /* Make sure this colour matches our custom set variable */
+  border-bottom: 1px solid var(--my-card-border-color);
+  font-size: 2em;
+  line-height: 1;
+}
+
+#details {
+  font-style: italic;
+  padding: 0.5em 0;
+}
+
+#details b, #details .bold {
+  color: #f00;
+  font-weight: 700;
+}
+
+/* Custom content passed through may have it's own styling, negate the italics here */
+#details ::content .details {
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* While we've defined some defaults, allow the users to completely override this one section. */
+#details, #details ::content .details {
+  @apply(--my-card-details);
+}
+
+/* We can still style child components as we would expect */
+paper-button {
+  margin-bottom: 1em;
+}
+
+
+/* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
+.condensed {
+  width: 100%;
+  max-height: 50px;
+  text-overflow: ellipsis;
+}
+```
+
+Run your component again, and as expected, nothing has changed. While we added some new variables to manage how our
+component can get styled, running out component will only leverage the defaults for us until we wish to make use of it.
+
+So lets play around with the variables. In order to do this, we need to place a style component onto our ```index
+.html```. Lets add the following style tag to the end of our ```<head>``` tag.
+
+```html
+<head>
+  ...
+  <!-- Styling overrides -->
+  <style is="custom-style">
+   /* Some override variables to give our component some flare*/
+   my-card {
+     --my-card-border-color: #f00;
+
+     --my-card-details: {
+       font-size: 1.5em;
+       padding: 2em;
+     }
+   }
+  </style>
+</head>
+```
+
+If you preview your component now, you will see that the overrides have taken effect giving us the alterations we
+anticipated. If you were using your ```my-card``` component from within another component, the same style syntax
+above could be used within another components isolated style block, allowing you to now segment how your component
+looks and customize it across any number of other components it will be utilized inside.
+
+
+This is really powerful stuff, and it helps to drive home again what can be accomplished with thorough planning and
+forethought into how and where you plan on using the components you start to build. When you start to recognize that
+every element on your page might be reusable, the flood gate opens and the sky is your limit.
+
+### Componentization Pro Tips
+
+- Components are everywhere, and you have the power to chose how specific and granular they become.
+- Considering the flexibility you will need, in the functionality, layout, and styling gives you the chance to create
+ open versatile components that do one thing well.
+- If a component is getting to large, it's likely you can split it out into it's own concerns.
+- Thinking clearly on what aspects of the component you want exposed, from variables accessible outside of the
+component, to style variables open to be overridden.

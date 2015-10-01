@@ -9,19 +9,37 @@
 
   <!-- Leveraging Polymer components require you to import your components to make use of them. -->
   <link rel="import" href="./my-card.html">
+
+  <!-- Styling overrides -->
+  <style is="custom-style">
+    /* Some override variables to give our component some flare*/
+    my-card {
+      --my-card-border-color: #f00;
+
+      --my-card-details: {
+        font-size: 1.5em;
+        padding: 2em;
+      }
+    }
+  </style>
 </head>
 <body>
 <!-- Lets render our component! -->
 <my-card title="My Card Sample">
-  <header>
-    Header notice
-  </header>
   <div class="details">
-    Some details... <b>to be unbolded inside</b>, <span style="font-weight: bold">and I'm formally bold too...</span>
+    Some details...<br>
+    <b>To be boldly go</b><br>
+    <span class="bold">Can I get a bold too?</span><br>
+    <span style="font-weight: bold">I'm formally bold...</span>
   </div>
-  <footer>
-    Footer notice
-  </footer>
+</my-card>
+<my-card title="My Card Sample">
+  <div class="details">
+    Some details...<br>
+    <b>To be boldly go</b><br>
+    <span class="bold">Can I get a bold too?</span><br>
+    <span style="font-weight: bold">I'm formally bold...</span>
+  </div>
 </my-card>
 </body>
 </html>

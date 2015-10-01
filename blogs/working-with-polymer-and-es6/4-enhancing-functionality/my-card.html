@@ -5,52 +5,69 @@
 
 <!-- The dom-module tells Polymer what isolated html, styles, and JS applied to your given component. -->
 <dom-module id="my-card">
-  <!-- Styles here are isolated to the scope of this component alone, to help reduce global style cruft. -->
-  <style>
-    /* A specialized selector which applies base styles to your component. */
-    :host {
-      border: 1px solid #eee;
-      color: #00f;
-      display: inline-block;
-      padding: 1em;
-      margin: 1em;
-    }
-
-    /* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
-    .condensed {
-      width: 100%;
-      max-height: 50px;
-      text-overflow: ellipsis;
-    }
-
-    #title {
-      border-bottom: 1px solid #eee;
-      font-size: 2em;
-      line-height: 1;
-    }
-
-    #details {
-      font-style: italic;
-      padding: 0.5em 0;
-    }
-
-    /* Custom content passed through may have it's own styling, negate the italics here */
-    #details ::content .details {
-      font-style: normal;
-    }
-
-    /* Clear out any bold */
-    #details ::content .details * {
-      font-weight: normal !important;
-    }
-
-    /* We can still style child components as we would expecte */
-    paper-button {
-      margin-bottom: 1em;
-    }
-  </style>
   <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->
   <template>
+    <!-- Styles here are isolated to the scope of this component alone, to help reduce global style cruft. -->
+    <style>
+      /* A specialized selector which applies base styles to your component. */
+      :host {
+        /* Variables -- Specify our components custom variables to expose, while providing our defaults */
+        --my-card-border-color: #eee;
+        --my-card-color: #00f;
+        --my-card-margin: 1em;
+
+        /* Base Styles */
+        /* Keep the border size and style fixed, but flexible colouring */
+        border: 1px solid var(--my-card-border-color);
+        /* Open up the copy colour */
+        color: var(--my-card-color);
+        display: inline-block;
+        padding: 1em;
+        /* While we want a default, we shouldn't restrict it to manipulation */
+        margin: var(--my-card-margin);
+      }
+
+      #title {
+        /* Make sure this colour matches our custom set variable */
+        border-bottom: 1px solid var(--my-card-border-color);
+        font-size: 2em;
+        line-height: 1;
+      }
+
+      #details {
+        font-style: italic;
+        padding: 0.5em 0;
+      }
+
+      #details b, #details .bold {
+        color: #f00;
+        font-weight: 700;
+      }
+
+      /* Custom content passed through may have it's own styling, negate the italics here */
+      #details ::content .details {
+        font-style: normal;
+        font-weight: normal;
+      }
+
+      /* While we've defined some defaults, allow the users to completely override this one section. */
+      #details, #details ::content .details {
+        @apply(--my-card-details);
+      }
+
+      /* We can still style child components as we would expect */
+      paper-button {
+        margin-bottom: 1em;
+      }
+
+      /* A conditional class to reduce the amount of copy visible with an ellipsis for overflow. */
+      .condensed {
+        width: 100%;
+        max-height: 50px;
+        text-overflow: ellipsis;
+      }
+    </style>
+
     <!-- Display the content header if provided, denoted by the select attribute -->
     <content select="header"></content>
 
