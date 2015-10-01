@@ -305,7 +305,7 @@ Now that we have a collapse control in place on the details, it's time to update
 into our button.
 
 ```js
-config = {
+const config = {
   ...
   readMore(e) {
     // Display the details, and will hide the button
