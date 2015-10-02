@@ -10,7 +10,7 @@ In Part 2, we will be getting a sample project set up for you to begin using Pol
 
 ---
 
-**Prerequisites**
+#### Prerequisites
 
 To make sure you're able to work with the samples below, please ensure you obtain these essential prerequisites first.
 
@@ -29,7 +29,7 @@ Starting off with a fresh folder, we will begin by creating our new sample proje
 mkdir my-card && cd my-card
 ```
 
-Having installed the [prerequisites](#Prerequisites) from above, next we'll initialize an NPM and Bower package so you
+Having installed the [prerequisites](#prerequisites) from above, next we'll initialize an NPM and Bower package so you
 can start to add some dependencies too them.
 
 ```bash
