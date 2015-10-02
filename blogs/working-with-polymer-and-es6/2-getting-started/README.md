@@ -42,8 +42,9 @@ the Enter key for the sake of this sample.
 **Why are we doing this?**
 
 In order to actually make use of NPM & Bower, you need a ```package.json``` to add and manage your NPM dependencies,
-and a ```bower.json``` to add and manager your bower dependencies. In addition when you do fill these out in more
-detail, they are what define a package you may be publishing to the network for others to consume later on.
+and a ```bower.json``` to add and manager your bower dependencies. These init commands are designed to help generate
+bare bone versions of these files for you. In addition, when you do start to fill these out in more detail, they are
+what define a package you may be publishing to the network for others to consume later on.
 
 ### Dependencies
 
