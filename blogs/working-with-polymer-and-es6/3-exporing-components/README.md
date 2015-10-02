@@ -120,7 +120,7 @@ the component, and natively through Polymer, the way it constructs properties al
 
 ### Component Lifecycle
 
-Now that our component has some properties to work with, lets dive right into how their lifecycle flow.  Polymer offers
+Now that our component has some properties to work with, let's dive right into how their lifecycle flow.  Polymer offers
 few methods to manage how your component is initialized and configured when it is spawned and or added to the DOM.
 
 >The element’s basic initialization order is:
@@ -211,8 +211,8 @@ this point.
 for new components created dynamically in code. One of it's benefits is that is a custom function, allowing you define
 your own set of parameters to build your component constructor as you choose.
 
-* ```attached()``` **The bread and butter of setting up your component**, the attached method lets you fully access all
-of your components properties, affect it fully on the DOM, and know that any parent/child components will respond to
+* ```attached()``` **The bread and butter of setting up your component**, the attached method will let you fully access
+ all of your components properties, affect it fully on the DOM, and know that any parent/child components will respond to
 them accordingly.
 
 * ```detached()``` Plugins, temporary state, or anything you wish to clean up after you component is removed should be

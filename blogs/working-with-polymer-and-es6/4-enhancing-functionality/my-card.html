@@ -5,7 +5,7 @@
 
 <!-- The dom-module tells Polymer what isolated html, styles, and JS applied to your given component. -->
 <dom-module id="my-card">
-  <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->
+  <!-- Define the actual output of your component on the DOM, what is displays or allows users' to interact with. -->
   <template>
     <!-- Styles here are isolated to the scope of this component alone, to help reduce global style cruft. -->
     <style>
@@ -89,7 +89,7 @@
 
     <!-- If condensed is set on the component, display this button. -->
     <template is="dom-if" if="{{condensed}}">
-      <!-- lets raise the button to make it stand out more -->
+      <!-- Raise the button to make it stand out more -->
       <paper-button raised on-tap="readMore" id="readmore">Read More</paper-button>
     </template>
 

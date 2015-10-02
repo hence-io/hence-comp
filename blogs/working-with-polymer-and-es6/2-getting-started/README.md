@@ -52,21 +52,21 @@ what define a package you may be publishing to the network for others to consume
 
 ### Dependencies
 
-With your blank project ready to go, now we'll look at the essential dependencies you need to start
+With your blank project ready to go, now we'll look at the essential dependencies you'll need to start
 working.
 
-From Bower, we want to include the core Polymer package, required to support your custom running in browser, and
-serves as the backbone of the code we will be writing.
+From Bower we want to include the core Polymer package, required to support our custom component running in browser,
+ and serves as the backbone of the code we will be writing.
 
 ```bash
 bower i --save polymer
 ```
 
-From NPM, we want to include a few different packages, to support our ES6 usage and serve our sample component as we
+From NPM we want to include a few different packages, to support our ES6 usage and serve our sample component as we
 work on it.
 
 ```bash
-npm i -D babel browser-sync browserify
+npm i -D babel browserify browser-sync
 ```
 
 ## Creating your First Component
@@ -87,14 +87,21 @@ To start with, we'll create a ```index.html``` which will be used to preview the
   <link rel="import" href="./my-card.html">
 </head>
 <body>
-  <!-- Lets render our component! -->
+  <!-- Let's render our component! -->
   <my-card></my-card>
 </body>
 </html>
 ```
 
-If you were to open this file in your web browser right now, you don't get to see much. We don't have our component
-created yet, so lets do that now! Add a ```my-card.html```
+Some key things seen in this example:
+
+- We are including a polyfill to ensure our component can be better supported
+- Our component file we will be creating is being imported using an HTML5 spec method, desigend to allow the
+```link``` tag to import html files as needed. This is also how components import other components for consumption.
+- New new component we'll be creating is being instansiated by ```<my-card></my-card>```.
+
+If you were to open this file in your web browser right now, you don't get to see much since we don't have our
+component created yet, Let's do that now! Add a ```my-card.html```
 
 ```html
 <!-- First, we must always import Polymers core, so that our component will be definable. -->
@@ -109,7 +116,7 @@ created yet, so lets do that now! Add a ```my-card.html```
       color: #0000FF;
     }
   </style>
-  <!-- Define the actual output of your component on the DOM, what is displays or lets user interact with. -->
+  <!-- Define the actual output of your component on the DOM, what is displays and allows users' to interact with. -->
   <template>
     <p>
       Web Components Rock!

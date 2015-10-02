@@ -76,7 +76,7 @@ Running your component again, you will see this is a pretty powerful tool, and i
 able to pass in a blob of content to render as needed is great, but what about when there may be different areas I want
 unique pieces of content to end up? Polymer has got you covered already!
 
-Lets extend out template to support a header in which will leverage the ```content``` tag again with some
+Let's extend out template to support a header in which will leverage the ```content``` tag again with some
 specifics on what should show up where from the yield.
 
 ```html
@@ -87,7 +87,7 @@ specifics on what should show up where from the yield.
 </template>
 ```
 
-Now lets update our component we're previewing to access this new control.
+Now let's update our component we're previewing to access this new control.
 
 ```html
 <my-card title="My Card Sample">
@@ -104,7 +104,7 @@ content.
 
 **Where ```content``` starts to fail... and how to avoid issues!**
 
-Now lets try and also put a footer selector in our element too.
+Now let's try and also put a footer selector in our element too.
 
 ```html
 <template>
@@ -114,7 +114,7 @@ Now lets try and also put a footer selector in our element too.
 </template>
 ```
 
-Now lets update our component to include the footer.
+Now let's update our component to include the footer.
 
 ```html
 <my-card title="My Card Sample">
@@ -231,7 +231,7 @@ The wonderful concept of web components on the whole is that they can be used in
  bat. You don't need to jump through any hoops to start using them together. All that is required is to include
  another component dependency (through Bower), and to import that component into ours to start working with it.
 
-Lets start off with a simple one to work with.  Since we have a button on our component to handle some read more/less
+Let's start off with a simple one to work with.  Since we have a button on our component to handle some read more/less
  toggle of the details which needs to be implemented, why don't we use a nicer button for it?  Looking over the
  [Polymer Component library](https://elements.polymer-project.org/browse), there's a clear choice on which component
  we can leverage for this: [Paper Button](https://elements.polymer-project.org/elements/paper-button)
@@ -248,14 +248,14 @@ And, at the top of our component file we need to include the import tag:
 <link rel="import" href="bower_components/paper-button/paper-button.html">
 ```
 
-Now lets go and update our read more button to make it snazy!
+Now let's go and update our read more button to make it snazy!
 
 ```html
 <template>
   ...
   <!-- If condensed is set on the component, display this button. -->
   <template is="dom-if" if="{{condensed}}">
-    <!-- lets raise the button to make it stand out more -->
+    <!-- Raise the button to make it stand out more -->
     <paper-button raised on-tap="readMore" id="readmore">Read More</paper-button>
   </template>
   ...
@@ -289,7 +289,7 @@ And, at the top of our component file we need to include the import tag:
 <link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
 ```
 
-Now lets go and update our read more button to make it snazy!
+Now let's go and update our read more button to make it snazy!
 
 ```html
 <template>
@@ -325,7 +325,7 @@ const config = {
 };
 ```
 
-With this in place, now lets take a look at our component again. The details will be hidden initially, and display
+With this in place, now let's take a look at our component again. The details will be hidden initially, and display
 the button, and once pressed, the details will scroll into view while hiding the button.
 
 #### Isolating Child Components
@@ -342,7 +342,7 @@ This goes back to needing to be responsible with what you're doing. The key thin
 
 There is a point where having to many components inside each other becomes a disadvantage when you're trying to cram
 them into a single component. The core concept of compartmentalization requires use to think twice before doing this.
- Lets look at an example to highlight when things could go astray.
+ Let's look at an example to highlight when things could go astray.
 
 Below is an advanced sample, but we will just be looking at it to draw a conclusion on how to avoid over doing child
 components.
@@ -474,7 +474,7 @@ into a component of it's own.  Breaking that out into it's own component could l
 ```
 
 Taking it one step further, whenever possible it's best to encapsulate anything complex inside a dom-repeater, so
-lets take out the entry display and warp that into it's own component too!
+let's take out the entry display and warp that into it's own component too!
 
 ```html
 <dom-module is="list-view">
@@ -563,7 +563,7 @@ it's own styling.
 If you haven't already reviewed [Polymers Styling Guide](https://www.polymer-project.org/1.0/docs/devguide/styling.html)
 , you should take a glimpse at it before continuing.
 
-Lets start adding some styles and see how they work inside our component.
+Let's start adding some styles and see how they work inside our component.
 
 ```css
 /* A specialized selector which applies base styles to your component. */
@@ -623,7 +623,7 @@ As well, let us update our sample in the ```index.html``` to show case how the s
 </my-card>
 ```
 
-Fire up your component, click the read more button, and lets review what's taking place!
+Fire up your component, click the read more button, and let's review what's taking place!
 
 1. To start off, the ```:host``` tag is the root style for your component. If we didn't have isolated CSS, we've be
 typing ```my-card { ...``` but this is already managed by the host tag for us.  Any styles we apply to this tag will
@@ -635,7 +635,7 @@ handle the overall wrapper that is applied to our components when rendered on pa
 
     We updated our component to use the ```<content select=".details"></content>``` inside the ```p#details```, and if we
     wanted to isolate styles on html passed in through the content tag, Polymer's got you covered with the
-    ```::content``` selector. This special one lets us dive into and access things inside any of our content tags used
+    ```::content``` selector. This special one that dives into and access things inside any of our content tags used
     throughout our component, giving use very exact and precise control over how we want it display.  In this case, we're
     telling our component any raw content passed in, we'll negate the italics effect on with
     ```#details ::content .details``` setting our font-style to normal.
@@ -669,7 +669,7 @@ So how do we tap into this wonderful feature? Instead of Polymer working to crea
 taken a step forward in leveraging the variable & mixin updates poses to the css3/4 specification in hopes this will
 become another native aspect of your web components as time goes on.
 
-Lets take a look at how we can start to leverage these:
+Let's take a look at how we can start to leverage these:
 
 ```css
 /* A specialized selector which applies base styles to your component. */
@@ -709,8 +709,8 @@ Lets take a look at how we can start to leverage these:
 Run your component again, and as expected, nothing has changed. While we added some new variables to manage how our
 component can get styled, running out component will only leverage the defaults for us until we wish to make use of it.
 
-So lets play around with the variables. In order to do this, we need to place a style component onto our ```index
-.html```. Lets add the following style tag to the end of our ```<head>``` tag.
+So let's play around with the variables. In order to do this, we need to place a style component onto our ```index
+.html```. Add the following style tag to the end of our ```<head>``` tag.
 
 ```html
 <head>
