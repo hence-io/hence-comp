@@ -101,7 +101,9 @@ Some key things seen in this example:
 - The new component we'll be creating is being instantiated by ```<my-card></my-card>```.
 
 If you were to open this file in your web browser right now, you don't get to see much. We don't have our
-component created yet, so let's do that now! Add a ```my-card.html``` file next to house our component innards.
+component created yet, so let's do that now!
+
+Add a ```my-card.html``` file next to house our component innards.
 
 ```html
 <!-- First, we must always import Polymers core, so that our component will be definable. -->
@@ -129,8 +131,9 @@ component created yet, so let's do that now! Add a ```my-card.html``` file next 
 
 Don't worry to much about the structure, we will be covering it all in detial as we continue through the series.
 While the ```my-card.html``` defines the component structure, we're planning to use ES6 for it's definition
-in code, which you'll note from the script tag usage above. For this we'll start with a simplified component
-definition to get things started in ```my-card.es6.js```.
+in code, which you'll note from the script tag usage above.
+
+For this we'll start with a simplified component definition to get things started in ```my-card.es6.js```.
 
 ```javascript
 'use strict'; // Some browsers still require this
