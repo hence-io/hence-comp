@@ -4,7 +4,7 @@ In Part 3, we'll dive in to our new component to explore the various aspects of 
 foundation of our component.
 
 - [Component Bootcamp](#component-bootcamp)
-  - [Registering your Component](#registering-your-component)
+  - [Registering Components](#registering-components)
   - [Properties](#properties)
   - [Component Lifecycle](#component-lifecycle)
   - [Template](#teamplte)
@@ -22,7 +22,7 @@ recommend it before continuing.
 This guide will be taking you beyond what's in the Polymer docs, to help highlight some of it's intricacies and
 got'chas to lookout for, allowing you to build more effective components with less effort.
 
-### Registering your Component
+### Registering Components
 
 [Polymer's guide on a component's Registration & Lifecycle](https://www.polymer-project.org/1.0/docs/devguide/registering-elements.html)
  describes the various ways in which components are handled when registered on page, initialized and accessible on
@@ -36,7 +36,7 @@ const MyCard = Polymer({...});
 You notice the use of the **const** keyword. This is one of the new ES6 variable declaration types, and it is
 especially useful for when defining things that shouldn't be overridden, such as our Polymer component definition!
 
-By creating a Polymer object this way, it allows your components to be placed on the DOM, as with the ```index.html``` or
+By creating a Polymer object this way, it allows our component to be placed on the DOM, as with the ```index.html``` or
 generated in code to spawn new components:
 ```html
 <my-card></my-card>
@@ -52,7 +52,7 @@ let el2 = document.createElement('my-card');
 document.findById('my-div').appendChild(el2); append it to a div
 ```
 
-**let** is another new variable keyword, which has essential replaced the use of ```var```, as let provides tighter
+**let** is another new variable keyword, which has essential replaced the use of ```var```, as helps to provide tighter
 control over what scopes your variables exist in.
 
 So, this seems easy enough? We've got our objects being generated, but this doesn't really given us any control over
@@ -66,8 +66,7 @@ Properties on our Polymer object allow it to manage state, flag options, and exp
 component will be interacting with. Properties can be defined by their simple object type ```String```, ```Array```
 and so forth, or they can be defined with a set of options to enhancing their purpose.
 
-Let's add some simple properties to our sample in ```my-card.es6.js```. We'll be getting into more advanced
-properties later on!
+Let's add some properties to our sample in ```my-card.es6.js```.
 
 ```js
 const config = {
@@ -76,14 +75,14 @@ const config = {
    *************************************************************************************/
   is, // In ES6, setting a key equal to a matching name variable can be shorten
   properties: {
-    title: 'String',
-    details: 'String',
+    title: String,
+    details: String,
     condensed: { // Whether or not we want to see the full details, or partial
       type: Boolean,
       value: true
     },
     email: {
-      type: 'Object',
+      type: Object,
       value() { // Improved ES6 function definitions
         return { // Returns a unique object for each instance of my-card
           label: 'Email',
@@ -109,19 +108,20 @@ With **email** being an object with a unique default, we want to return a new ob
 each **my-card** component has a unique email object assigned to it. If we didn't, every single instance of
 **my-card** would share the same value. While there are some cases this could be useful, it is not the norm.
 
-You will also notice that we're leveraging ES6's improved function definition  ```value() {...}```, which in ES5 would of
-required us to write ```value: function() {...}```. It's a simple short hand, but when you've written ```function```
+You will also notice that we're leveraging ES6's improved function definition  ```value() {...}```, which in ES5 would
+of required us to write ```value: function() {...}```. It's a simple short hand, but when you've written ```function```
 thousands (and thousands, and thousands...) of times, it's a very handy time saver!
 
 Lastly, a handy little debug function was added in ```myProps() {...}``` which shows how within the component we can
 have access to properties we're defining. ```this``` within any component functions will always give you the context of
-the component, and natively through Polymer, the way it constructs properties allows you to use them driectly as
+the component, and natively through Polymer, the way it constructs properties allows you to use them directly as
 ```this.email``` without excessive getter/setter functions.
 
 ### Component Lifecycle
 
-Now that our component has some properties to work with, let's dive right into how their lifecycle flow.  Polymer offers
-few methods to manage how your component is initialized and configured when it is spawned and or added to the DOM.
+Now that our component has some properties to work with, let's dive right into how their lifecycles flow.  Polymer
+offers a few methods to manage how your component is initialized and configured when it is spawned and or added to the
+ DOM.
 
 >The element’s basic initialization order is:
 >
@@ -131,12 +131,13 @@ few methods to manage how your component is initialized and configured when it i
 > - factoryImpl callback
 > - attached callback
 
-They declared up front that the order in which these execute is not guaranteed, but they are able to
-ensure some of the hooks do execute in a manageable sequence.
+They declared up front that the order in which these execute is not guaranteed, but they are able to ensure some of
+the hooks do execute in a manageable sequence.
 
-*Note:* One of the callbacks has very limited use case: ```factoryImpl``` is only ever used if your component is being
-dynamically generated in code. This will **never** be leveraged from components defined in the DOM or other components
-templates.
+*Note:* One of the callbacks has **very** limited use case: ```factoryImpl``` is only ever used if your component is
+being dynamically generated in code. This will **never** be leveraged from components defined in the DOM or other
+components templates. As well, it fires later in the lifecycle, something to be aware of when using create or ready
+in combination with it.
 
 >For a given element:
 >
@@ -144,13 +145,14 @@ templates.
 > - The ready callback is always called before attached.
 > - The ready callback is called on any local DOM children before it’s called on the host element.
 
-Add into the mix components with in components, sibling components and so forth, it can get quite complicated!
+Add into the mix components with in components, sibling components and so forth, things can start to get quite
+complicated!
 
 So how does one make sense of all these hooks? Polymers guide has a introduction to them, but it provides little on
- how they pan out in practice. And this is where some of it's got'chas start to appear on how to best leverage it's
- tools for what you need.
+how they pan out in practice. And this is where some of it's got'chas start to appear on how to best leverage it's
+tools for what you need.
 
-Let's add these methods to our component with details on what they're trying to accomplished for you.
+Let's add these methods to our component now with details on what they're trying to accomplished for you.
 
 ```js
 const config = {
@@ -202,34 +204,37 @@ actually perform within them.
 * ```created()``` This is the most limited start up method, and should be focused on low level support in elements as
 it has no access to much of the final components attributes.
 
-* ```ready()``` Avid jQuery users will be thrown for a bit of a loop with this on, as it does not imply everything
+* ```ready()``` Avid jQuery users will be thrown for a bit of a loop with this one, as it does not imply everything
 related to this component is ready to use! You do however have access to the DOM at this point, and this method is very
 effective for working with any child components, as it ensures they are fully initialized and able to be manipulated at
 this point.
 
 * ```factoryImpl(title, details = '', condensed = true) {...}``` Recalling the note above, this function will only run
 for new components created dynamically in code. One of it's benefits is that is a custom function, allowing you define
-your own set of parameters to build your component constructor as you choose.
+your own set of parameters to build your component constructor as you choose. When used, any supporting functions ran
+in created or ready will of already fired, so be cautious how early you access parameters if you plan on using
+object instantiation.
 
 * ```attached()``` **The bread and butter of setting up your component**, the attached method will let you fully access
  all of your components properties, affect it fully on the DOM, and know that any parent/child components will respond to
-them accordingly.
+them accordingly. As well, any components created dynamically will have processed their factoryImpl function already,
+ know you can safely make full use of any parameters on your component.
 
 * ```detached()``` Plugins, temporary state, or anything you wish to clean up after you component is removed should be
 placed here. This  is very useful if you're dynamically adding and removing your components on page, to ensure it's not
 leaving anything unwanted behind afterwards.
 
 In this sample, we also see another awesome ES6 enhancements to functions! Finally (FINALLY!), we have access to
-default values for are method arguments. Creating a new component with ```let card = new MyCard('This is my card');```
-will provide with a card component, having a title of 'This is my card', blank details, and be flagged as condensed.
-It's wonderful to finally have this feature in JS, and helps to reduce argument verification code to ward off undefined
-parameters passed.
+default values for are method arguments ```factoryImpl(title, details = '', condensed = true) { ... }```. Creating a new
+component with ```let card = new MyCard('This is my card');``` will generate a card component having a title of
+'This is my card', blank details, and be flagged as condensed. It's wonderful to finally have this feature in JS, and
+helps to reduce argument verification code to ward off undefined parameters passed.
 
 ### Template
 
 We've added a lot of code to our component definition, and it's time that we update our component's template to tie in
- all of the new functionality and behaviour we've been adding. We will replace our ```my-card.html``` <tempalte> tag
- with the following:
+all of the new functionality and behaviour we've been adding. We will replace our ```my-card.html``` <tempalte> tag
+with the following:
 
 ```html
 <dom-module id="my-card">

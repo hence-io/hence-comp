@@ -6,9 +6,9 @@ In Part 2, we will be getting a sample project set up for you to begin using Pol
 - [Getting Started](#getting-started)
   - [Package Files](#package-files)
   - [Dependencies](#dependencies)
-- [Creating your First Component](#creating-your-first-component)
-  - [Compiling your ES6 Code](#compiling-your-es6-code)
-  - [Serving your Component](#serving-your-component)
+- [Creating our First Component](#creating-our-first-component)
+  - [Compiling ES6 Code](#compiling-es6-code)
+  - [Serving Components](#serving-components)
 
 ---
 
@@ -69,7 +69,7 @@ work on it.
 npm i -D babel browserify browser-sync
 ```
 
-## Creating your First Component
+## Creating our First Component
 
 To start with, we'll create a ```index.html``` which will be used to preview the component itself.
 
@@ -155,7 +155,7 @@ export {is, config};
 export default MyCard;
 ```
 
-### Compiling your ES6 Code
+### Compiling ES6 Code
 
 Now that we have the basic examples in place, it's time to compile your ES6 code to test our your component.
 
@@ -199,7 +199,7 @@ the needed file in which our ```my-card.html``` template is targeting.
 This short process will let us start previewing and updating our component once we start having a way to display
 it, which we will tackle now by learning how to serve our component.
 
-### Serving your Component
+### Serving Components
 
 With the files in place, and our ES6 code ready to be used in browser, lastly we need to have a way to serve our
 component. We're not able to simply open the ```index.html``` and view it, so we need to simulate a web server. This
