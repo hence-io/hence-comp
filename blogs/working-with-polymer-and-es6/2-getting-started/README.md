@@ -3,6 +3,13 @@
 In Part 2, we will be getting a sample project set up for you to begin using Polymer and ES6 together, rendering your
  first web component.
 
+- [Getting Started](#getting-started)
+  - [Dependencies](#dependencies)
+  - [Creating your First Component](#creating-your-first-component)
+  - [Compiling your ES6 Code](#compiling-your-es6-code)
+
+---
+
 **Prerequisites**
 
 To make sure you're able to work with the samples below, please ensure you obtain these essential prerequisites first.

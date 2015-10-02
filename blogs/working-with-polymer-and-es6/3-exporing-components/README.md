@@ -3,6 +3,15 @@
 In Part 3, we'll dive in to our new component to explore the various aspects of Polymer to start crafting the
 foundation of our component.
 
+- [Component Bootcamp](#component-bootcamp)
+  - [Registering your Component](#registering-your-component)
+  - [Properties](#properties)
+  - [Component Lifecycle](#component-lifecycle)
+  - [Template](#teamplte)
+  - [Listeners](#listeners)
+
+---
+
 ## Component Bootcamp
 
 With the sample project up and running, we can now start to explore what makes Polymer shine, while introducing you
@@ -12,14 +21,6 @@ recommend it before continuing.
 
 This guide will be taking you beyond what's in the Polymer docs, to help highlight some of it's intricacies and
 got'chas to lookout for, allowing you to build more effective components with less effort.
-
-Here's the highlights of what we'll be covering:
-
-- [Registering your Component](#registering-your-component)
-- [Properties](#properties)
-- [Component Lifecycle](#component-lifecycle)
-- [Template](#teamplte)
-- [Listeners](#listeners)
 
 ### Registering your Component
 

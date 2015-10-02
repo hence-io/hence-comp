@@ -3,6 +3,18 @@
 In Part 4, we are now ready to start expanding and featurizing our new component to make it a practical component we
 could see ourselves using in a site or web application.
 
+- [Digging in Deeper](#digging-in-deeper)
+  - [Embedded Content](#embedded-content)
+    - [The Golden Rules of ```<content>```](#the-golden-rules-of-content)
+    - [Versatility](#versatility)
+  - [Child Components](#child-components)
+    - [Isolating Child Components](#isolating-child-components)
+  - [Styling and CSS Variables](#styling-and-css-variables)
+    - [CSS Variables](#css-variables)
+  - [Componentization Pro Tips](#componentization-pro-tips)
+
+---
+
 ## Digging in Deeper
 
 We've created our component, flush out how it gets created, and given it some basic properties and behaviour. From hear
@@ -13,12 +25,6 @@ best use out of them. There's so much to leverage that you really need to spend 
 to build for the right reasons.
 
 > With great power comes great responsibility. - Ben Parker
-
-In this section we will be looking into the following advanced aspects:
-
-- [Embedded Content](#embedded-content)
-- [Child Components](#child-components)
-- [Styling and CSS Variables](#styling-and-css-variables)
 
 ### Embedded Content
 

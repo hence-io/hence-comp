@@ -129,7 +129,7 @@ regardless of the extra labels, it is still ECMAScript 6 in the end.
 ## Package Managers
 
 Package managers are an essential part of the build and development process, allowing teams of developers to work
-together and add in or update project dependencies with ease (more often than not). Two essential dependencies
+together and add in or update project dependencies with ease (more often than not). Two essential dependency
 managers are used through out this article, allowing you to get up and running right away so you can follow along.
 
 ### Bower
@@ -144,23 +144,23 @@ presently a large amount of Polymer components reside, include Polymer itself an
 ### NPM
 
 NPM is NodeJS's Package Manager. As long as you have Node installed, NPM comes along with it already for you to
-leverage. While at times packages hosted on NPM can tend to be considered 'Node focused', more often than not the
+leverage. While at times packages hosted on NPM can tend to be considered server focused, more often than not the
 code is native javascript that works just fine on the client side as well as server side. In fact, because of using
-ES6, which has native module importing, you largely can use any NPM code package you want to help build your front
+ES6, which has native module importing, you can use any NPM code package you want to help build your front
 end components! This is especially helpful in building specific and isolated code.
 
 ### Leveraging Bower and NPM packages together in ES6
- A clear example of the power in ES6 is comparing the [Lodash](https://github.com/lodash/lodash) NPM package file vs.
-  it's Bower package file. NPM allows you to specific a main file, which is leveraged when you ```import _ from
-  'lodash';```, and additional to include specific sections or even singular methods from lodash with paths, such as
-  ```import _clone from 'lodash/object/clone';``` giving you a specific lodash method to work with. Conversely, the
-  Bower package only allows you to include the whole package, and if loaded in to your html by a script tag, with no
-  way to isolate what code you actually need from it on the front end. This is one of the awesome benefits of
-  leveraging ES6!
 
-Need to include a slider or gallery plugin as well to your component? No problem, install it through bower and import
- just the same ```import d3 from 'd3';```, and you're golden! Mix and match packages as you deem fit to get the most
- benefit out of your tools.
+A clear example of the power in ES6 is comparing the [Lodash](https://github.com/lodash/lodash) NPM package file vs.
+it's Bower package file. NPM allows you to specific a main file, which is leveraged when you ```import _ from
+'lodash';```, and additional to include specific sections or even singular methods from lodash with paths, such as
+```import _clone from 'lodash/object/clone';``` giving you a specific lodash method to work with. Conversely, the
+Bower package only allows you to include the whole package with no way to isolate what code you actually need from it
+on the front end. This is one of the awesome benefits of leveraging ES6!
+
+Need to include a slider or gallery plugin as well to your component? No problem, install it through NPM and import
+just the same ```import d3 from 'd3';```, and you're golden! Mix and match packages as you deem fit to get the most
+benefit out of your tools.
 
 ---
 

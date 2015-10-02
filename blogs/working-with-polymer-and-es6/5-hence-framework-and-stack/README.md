@@ -3,6 +3,12 @@
 In the conclusion of this article, we take a look at an improved way to develop and publish our component in a
 specialized stack, with some methodology behind how to get the most out of the components you build.
 
+- [Hence](#hence)
+- [Hence Framework](#hence-framework)
+- [Hence Stack](#hence-stack)
+
+---
+
 ## Hence
 
 What is Hence?
