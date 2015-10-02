@@ -4,9 +4,11 @@ In Part 2, we will be getting a sample project set up for you to begin using Pol
  first web component.
 
 - [Getting Started](#getting-started)
+  - [Package Files](#package-files)
   - [Dependencies](#dependencies)
-  - [Creating your First Component](#creating-your-first-component)
+- [Creating your First Component](#creating-your-first-component)
   - [Compiling your ES6 Code](#compiling-your-es6-code)
+  - [Serving your Component](#serving-your-component)
 
 ---
 
@@ -28,6 +30,8 @@ Starting off with a fresh folder, we will begin by creating our new sample proje
 ```bash
 mkdir my-card && cd my-card
 ```
+
+### Package Files
 
 Having installed the [prerequisites](#prerequisites) from above, next we'll initialize an NPM and Bower package so you
 can start to add some dependencies too them.
@@ -65,7 +69,7 @@ work on it.
 npm i -D babel browser-sync browserify
 ```
 
-### Creating your First Component
+## Creating your First Component
 
 To start with, we'll create a ```index.html``` which will be used to preview the component itself.
 
