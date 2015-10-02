@@ -34,8 +34,8 @@ debugging as required.
 ### HenceComp
 
 HenceComp is the base object in which all Hence Components are derived from to help address some common
- functionality that is not present in Polymer, such as simplifying component instantiation through DOM or
- dynamic creation, and methods to snap components to new DOM elements with ease.
+functionality that is not present in Polymer, such as simplifying component instantiation through DOM or
+dynamic creation, and methods to snap components to new DOM elements with ease.
 
 A critical addition to this is a integrity checker to ensure properties and methods you add to your object do not
 conflict with Polymer, prevent disastrous errors which go unchecked by Polymer, so you can address them promptly
@@ -66,8 +66,8 @@ formats the results to support a dedicated UI component, and serves the results 
 
 Schema components define and help data adhere to a strict format, field type, and validation methods for data
 integrity and transport. All API interaction occurs through these components, and it helps to facilitate serving data
- to the Model components. These components have 0 consideration for UI and are utilized exclusively for their data
- management.
+to the Model components. These components have 0 consideration for UI and are utilized exclusively for their data
+management.
 
 Because of the interoperable nature of these components, they are still able to effectively be leveraged on the
 server API side of your project, if Node/iojs based, allowing the data validation methods to support front and
@@ -83,23 +83,23 @@ The most effective way to work with and make use of the framework is to scaffold
 A summary of the supported tools baked into it:
 
 * Included
-    * Hence Component Framework
-    * Polymer Web Components
-    * ES6 / ES2015
-        * Babel
-        * Browserify
-    * Sass
-        * Compass
-    * Gulp
-        * BrowserSync
+  * Hence Component Framework
+  * Polymer Web Components
+  * ES6 / ES2015
+    * Babel
+    * Browserify
+  * Sass
+    * Compass
+  * Gulp
+    * BrowserSync
 * Optional
-    * ES Lint
-    * Scss Lint
-    * KSS Style Guide
-        * SC5 Styleguide
-    * Web Component Behavioural Testing
-    * Karma Unit Testing
-    * JS Doc Generation
+  * ES Lint
+  * Scss Lint
+  * KSS Style Guide
+    * SC5 Styleguide
+  * Web Component Behavioural Testing
+  * Karma Unit Testing
+  * JS Doc Generation
 
 For more details, check out the project on how to get up and running in minutes! https://github.com/hence-io/slush-hence
 
