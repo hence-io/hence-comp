@@ -1,6 +1,6 @@
 # Working with Polymer and ES6 - Exploring Components
 
-In Part 3, we are diving in to our new component to explore the various aspects of Polymer to start crafting the
+In Part 3, we'll dive in to our new component to explore the various aspects of Polymer to start crafting the
 foundation of our component.
 
 ## Component Bootcamp
