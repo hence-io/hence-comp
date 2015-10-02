@@ -160,15 +160,19 @@ export default MyCard;
 Now that we have the basic examples in place, it's time to compile your ES6 code to test our your component.
 
 If you noticed in the ```my-card.html``` template file, the script bring referenced is ```my-card.js``` and not
-the file we named our script as, ```my-card.es6.js```. This is because we need to use our transpile, Babel, to
+the file we named our script as, ```my-card.es6.js```. This is because we need to use our transpiler, Babel, to
 convert it to ES5 code so that the browser can understand it. To do this, we need to run the Babel CLI to transpile
 our code down for us to the file our component wants to access, and expose it by bundling it using Browserify.
 
-Since we will need to recompile the file a few times while testing out component, it's helpful to add commonly used
-commands you type to your ```package.json```. Opening it up, you will see an object inside there labeled
+**Why do we need Browserify on top of Babel?** When we transpile our ES6 code, it gets converted (by default) into a
+CommonJS module, similar to what NodeJs uses. To make it usable in our browser without extra work, we can pack the file
+and expose it through browserify easily.
+
+Since we will need to recompile the file a few times while testing out our component, it's helpful to add commonly used
+commands you run to your ```package.json```. Opening it up, you will see an object inside there labeled
 ```scripts``` with a sample test command already created for you.
 
-Add the following to the ```scripts``` object:
+Replace the ```scripts``` object with following command instead:
 
 ```json
 scripts : {
@@ -186,11 +190,14 @@ npm run compile
 
 A couple of things are occurring to give use the working file we need for the browser.
 
-1. Babel is transpiling the JS into a temporary ES5 compatible file. Because ES6 is module based, the code isn't
-usable directly in the browser just yet. By default, Babel compiles code to be in the CommonJS format (used by Node).
+1. Babel is transpiling the JS into a temporary ES5 compatible file. As mentioned above, the code isn't quite ready
+to use yet being a CommonJS module and as to why we've designated it as a temporary file to compile to.
 2. Browserify is being used to bundle the module and expose it globally, to make it browser friendly. This creates
 the needed file in which our ```my-card.html``` template is targeting.
 3. The temporary file is being removed to clean things up.
+
+This short process will let us start previewing and updating our component once we start having a way to display
+it, which we will tackle now by learning how to serve our component.
 
 ### Serving your Component
 
@@ -198,10 +205,11 @@ With the files in place, and our ES6 code ready to be used in browser, lastly we
 component. We're not able to simply open the ```index.html``` and view it, so we need to simulate a web server. This
 thankfully is of Nodes specialises.
 
-One of the NPM packages you installed above, ```browser-sync``` is a hands off, simple and
-straightforward web server to host your project to test it.
+One of the NPM packages you installed above (```browser-sync```) is a hands off, simple and straightforward web server
+to host your project locally and let you play around with it.
 
-To make this convenient to start on the fly, open up your ```package.json``` again to expand the scripts object with:
+To make this convenient to start on the fly, let's add another helper command. Open up your ```package.json``` again
+to expand the scripts object with a ```start``` command:
 
 ```json
 scripts : {
@@ -210,7 +218,8 @@ scripts : {
 }
 ```
 
-From you console now you serve your component. BrowserSync will automatically open the browser to port is launches on:
+The new command will serve your component to preview, and BrowserSync will automatically open the browser to port is
+launches on automatically for you.
 
 ```bash
 npm start
@@ -219,7 +228,7 @@ npm start
 You should now see the my-card component displaying with the default label 'Web Components Rock!' in blue if
 everything went successful.
 
-**What is going on with this compile command?**
+**What is going on with this start command?**
 
 With this command, we're doing two things to get your component displaying in browser for you.
 

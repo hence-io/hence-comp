@@ -29,7 +29,7 @@ got'chas to lookout for, allowing you to build more effective components with le
  the DOM, and finally when they're being removed.
 
 A Polymer object is registered by you defining it in your JS file:
-```javascript
+```js
 const MyCard = Polymer({...});
 ```
 
@@ -42,7 +42,7 @@ generated in code to spawn new components:
 <my-card></my-card>
 ```
 
-```javascript
+```js
 // Create an element through object construction
 let el = new MyCard(); // spawn a new component
 document.findById('my-div').appendChild(el); append it to a div
@@ -69,7 +69,7 @@ and so forth, or they can be defined with a set of options to enhancing their pu
 Let's add some simple properties to our sample in ```my-card.es6.js```. We'll be getting into more advanced
 properties later on!
 
-```javascript
+```js
 const config = {
   /**************************************************************************************
    * Initialization
@@ -152,7 +152,7 @@ So how does one make sense of all these hooks? Polymers guide has a introduction
 
 Let's add these methods to our component with details on what they're trying to accomplished for you.
 
-```javascript
+```js
 const config = {
   ...
   /**************************************************************************************
@@ -286,7 +286,7 @@ button, as well as track whether the component should be displaying the details 
 To accomplish this, we need to add some behaviour to our component so it knows what to do when the condensed flag is
 set or toggled, and allow our button to trigger that.
 
-```javascript
+```js
 const config = {
   ...
   /**************************************************************************************
@@ -327,7 +327,7 @@ component specific attributes to help with more advanced usage.
 Due to some issues in the event propagation of Polymer, firing events has to stick to leveraging strings as the
 targets vs embedding functions. This means a typical code convention will no be successful:
 
-```javascript
+```js
 const config = {
   ...
   /**************************************************************************************
