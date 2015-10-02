@@ -36,6 +36,15 @@ can start to add some dependencies too them.
 npm init && bower init
 ```
 
+These commands will ask you some attributes to fill in for each of the package files, but you can likely just spam
+the Enter key for the sake of this sample.
+
+**Why are we doing this?**
+
+In order to actually make use of NPM & Bower, you need a ```package.json``` to add and manage your NPM dependencies,
+and a ```bower.json``` to add and manager your bower dependencies. In addition when you do fill these out in more
+detail, they are what define a package you may be publishing to the network for others to consume later on.
+
 ### Dependencies
 
 With your blank project ready to go, now we'll look at the essential dependencies you need to start
